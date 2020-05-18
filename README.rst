@@ -28,15 +28,14 @@ Introduction
 ``Sphinx-Collections`` is completely configured by variables inside the ``conf.py`` file of your Sphinx project::
 
    collections = {
-      'my_files: {
+      'my_files': {
          'driver': 'copy',
-         'source': '../../extra_files/',
-         }
+         'source': '../../extra_files/'
       }
    }
 
 The driver ``copy`` allows to copy local files into your Sphinx project.
-There are :ref:`other drivers <drivers>` , which support different use cases and and files locations
+There are other drivers available, which support different use cases and and files locations.
 
 By default all files get copied to ``_collections/`` + ``collection_name``, so in this example the complete path
 inside your documentation folder would be ``_collections/my_files/``. The location can be set specific for each

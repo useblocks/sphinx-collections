@@ -11,6 +11,8 @@
    :caption: Contents:
 
    drivers/index
+   directives
+   configuration
 
 Indices and tables
 ==================

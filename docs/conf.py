@@ -74,7 +74,7 @@ html_theme_options = {
     'github_button': True,
     'github_type': 'star',
     'fixed_sidebar': True,
-    'extra_nav_links': {'needs@PyPi': "https://pypi.python.org/pypi/sphinx-collections/",
-                        'needs@github': "https://github.com/useblocks/sphinx-collections",
-                        'needs@travis': "https://travis-ci.org/useblocks/sphinx-collections"}
+    'extra_nav_links': {'collections@PyPi': "https://pypi.python.org/pypi/sphinx-collections/",
+                        'collections@github': "https://github.com/useblocks/sphinx-collections",
+                        'collections@travis': "https://travis-ci.org/useblocks/sphinx-collections"}
 }
