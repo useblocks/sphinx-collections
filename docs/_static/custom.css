@@ -1,0 +1,25 @@
+div.body h1, div.body h2, div.body h3, div.body h4 {
+    text-align: center;
+    border-bottom: 4px solid;
+    border-top: 4px solid;
+}
+div.body h1 {
+    border-color: #ff6600;
+}
+
+div.body h2 {
+    border-color: #aad400;
+}
+
+div.body h3 {
+    border-color: #5555ff;
+}
+
+div.body h4 {
+    border-color: #ff55dd;
+}
+
+body, div.sphinxsidebar h3, div.sphinxsidebar h4 {
+    font-family: sans-serif;
+    color: #000000;
+}
