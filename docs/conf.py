@@ -36,6 +36,7 @@ collections = {
         'driver': 'copy',
         'source': '../tests/dummy/',
         'ignore': ['*.dat'],
+        'active': True
     }
 
 }

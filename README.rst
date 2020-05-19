@@ -25,7 +25,7 @@ Feel free to extend the list of available ``drivers`` by creating a PR in our gi
 Introduction
 ------------
 
-``Sphinx-Collections`` is completely configured by variables inside the ``conf.py`` file of your Sphinx project::
+``Sphinx-Collections`` gets completely configured by variables inside the ``conf.py`` file of your Sphinx project::
 
    collections = {
       'my_files': {

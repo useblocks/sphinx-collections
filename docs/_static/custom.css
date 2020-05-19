@@ -1,3 +1,13 @@
+body {
+    background-color: #eee;
+}
+
+div.body {
+    padding: 20px 30px;
+    border: 2px solid #aaa;
+    border-radius: 5px;
+}
+
 div.body h1, div.body h2, div.body h3, div.body h4 {
     text-align: center;
     border-bottom: 4px solid;

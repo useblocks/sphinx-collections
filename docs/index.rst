@@ -10,6 +10,7 @@
    :maxdepth: 2
    :caption: Contents:
 
+   collections/index
    drivers/index
    directives
    configuration
