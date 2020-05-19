@@ -82,3 +82,20 @@ Use ``if-collection`` to add content to a page only, if a specified collections 
 
           /_collections/my_test/index
           /_collections/my_data/index
+
+Motivation
+----------
+
+This sphinx extension is based on the needs of a software development team inside
+a german automotive company.
+
+The project team was searching for a practical way to support multiple sphinx-based documentations inside a
+mono-repository and have the possibility to merge different documentations together or to add files based
+on external data.
+
+Sphinx-Collections is part of a software bundle, which was designed to support the development of
+`ISO 26262 <https://en.wikipedia.org/wiki/ISO_26262>`_ compliant software.
+Other tools are:
+`sphinx-needs <http://sphinxcontrib-needs.readthedocs.io/en/latest/>`_,
+`sphinx-test-reports <http://sphinx-test-reports.readthedocs.io/en/latest/>`_,
+`tox-envreport <http://tox-envreport.readthedocs.io/en/latest/>`_.
