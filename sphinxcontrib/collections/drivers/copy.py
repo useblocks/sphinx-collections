@@ -15,7 +15,7 @@ class CopyDriver(Driver):
         try:
             copytree(self.config['source'],
                      self.config['target'],
-                     ignore_patterns(*self.config['ignore']), dirs_exist_ok=True)
+                     ignore_patterns(*self.config['ignore']))
         except IOError as e:
             self.error('Problems during copying files.', e)
 
