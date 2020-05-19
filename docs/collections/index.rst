@@ -46,7 +46,7 @@ For a complete list of drivers, please see :ref:`drivers`.
 
     collections = {
         'my_collection': {
-            'driver': 'copy',
+            'driver': 'copy_folder',
             'source': 'source path',
         }
     }
@@ -63,7 +63,7 @@ Depending on the used driver, this can be a folder, file, a git repository or wh
 
     collections = {
         'my_collection': {
-            'driver': 'copy',
+            'driver': 'copy_folder',
             'source': 'source path',
         }
     }
@@ -99,7 +99,7 @@ project.
 
     collections = {
         'my_collection': {
-            'driver': 'copy',
+            'driver': 'copy_folder',
             'source': 'source path',
             'target': 'custom_folder/folder_x/'
         }
@@ -118,7 +118,7 @@ If set to ``False``, the collection gets completely ignored during documentation
 
     collections = {
         'my_collection': {
-            'driver': 'copy',
+            'driver': 'copy_folder',
             'source': 'source path',
             'active': False
         }
@@ -134,7 +134,7 @@ Takes a boolean value and if it is set to ``True`` any problem will raise an exc
 
     collections = {
         'my_collection': {
-            'driver': 'copy',
+            'driver': 'copy_folder',
             'safe': False,
         }
     }
@@ -154,7 +154,7 @@ Default value can be changed for all collections by setting :ref:`conf_collectio
 
     collections = {
         'my_collection': {
-            'driver': 'copy',
+            'driver': 'copy_folder',
             'source': 'source path',
             'clean': False
         }
@@ -177,7 +177,7 @@ Default value can be changed for all collections by setting :ref:`conf_collectio
 
     collections = {
         'my_collection': {
-            'driver': 'copy',
+            'driver': 'copy_folder',
             'source': 'source path',
             'final_clean': False
         }
@@ -195,7 +195,7 @@ executed.
 
     collections = {
         'my_collection': {
-            'driver': 'copy',
+            'driver': 'copy_folder',
             'source': 'source path',
             'active': False,
             'tags': ['my_collection', 'dummy']
