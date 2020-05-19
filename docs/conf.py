@@ -32,14 +32,23 @@ extensions = [
 ]
 
 collections = {
-    'copy_test': {
-        'driver': 'copy',
+    'copy_folder_test': {
+        'driver': 'copy_folder',
         'source': '../tests/dummy/',
         'ignore': ['*.dat'],
-        'active': True
+        'active': True,
+    },
+    'copy_file_test': {
+        'driver': 'copy_file',
+        'source': '../tests/dummy/dummy.rst',
+        'target': 'dummy_new.rst',
+        'active': True,
+
     }
 
 }
+
+collections_final_clean = True
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

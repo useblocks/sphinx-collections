@@ -3,7 +3,9 @@ import sphinx
 
 from pkg_resources import parse_version
 
-from sphinxcontrib.collections.drivers.copy import CopyDriver
+from sphinxcontrib.collections.drivers.copy_folder import CopyFolderDriver
+from sphinxcontrib.collections.drivers.copy_file import CopyFileDriver
+from sphinxcontrib.collections.directives.if_collection import CollectionsIf, CollectionsIfDirective
 
 sphinx_version = sphinx.__version__
 if parse_version(sphinx_version) >= parse_version("1.6"):
@@ -19,11 +21,21 @@ VERSION = 0.1
 COLLECTIONS = []
 
 DRIVERS = {
-    'copy': CopyDriver
+    'copy_folder': CopyFolderDriver,
+    'copy_file': CopyFileDriver
 }
 
 
 def setup(app):
+    """
+    Configures Sphinx
+
+    Registers:
+
+    * config values
+    * receivers for events
+    * directives
+    """
 
     # Registers config options
     app.add_config_value('collections', {}, 'html')
@@ -37,8 +49,12 @@ def setup(app):
     app.connect('config-inited', execute_collections)
     app.connect('build-finished', final_clean_collections)
 
+    app.add_node(CollectionsIf)
+    app.add_directive('if-collection', CollectionsIfDirective)
+    app.add_directive('ifc', CollectionsIfDirective)
+
     return {'version': VERSION,
-            'parallel_read_safe': False,
+            'parallel_read_safe': True,
             'parallel_write_safe': True}
 
 
@@ -49,9 +65,6 @@ def collect_collections(app, config):
 
 
 def clean_collections(app, config):
-    if not bool(app.config['collections_clean']):
-        return
-
     LOG.info('Clean collections ...')
     for collection in COLLECTIONS:
         collection.clean()
@@ -80,17 +93,41 @@ class Collection:
     def __init__(self, app, name, **kwargs):
         self.app = app
         self.name = name
+        self.executed = False
         self._log = LOG
 
         self.active = bool(kwargs.get('active', True))
+        tags = kwargs.get('tags', [])
+
+        # Check if tags are set and change active to True if this is the case
+        self.tags = tags
+        for tag in tags:
+            if tag in self.app.tags.tags.keys() and self.app.tags.tags[tag]:
+                self.active = True
 
         self._prefix = '  {}: '.format(self.name)
+
+        collection_main_folder = os.path.join(app.confdir, app.config['collections_target'])
 
         target = kwargs.get('target', None)
         if target is None:
             target = self.name
         if not os.path.isabs(target):
-            target = os.path.join(app.confdir, app.config['collections_target'], target)
+            target = os.path.join(collection_main_folder, target)
+
+        # Check if we manipulate data only in documentation folder.
+        # Any other location is not allowed.
+        if not os.path.realpath(target).startswith(os.path.realpath(app.confdir)):
+            raise CollectionsException(
+                'Target path is not part of documentation folder\n'
+                'Target path: {}\n'
+                'Sphinx app conf path: {}'.format(os.path.realpath(target),
+                                                  os.path.realpath(app.confdir)))
+
+        if not os.path.exists(os.path.dirname(target)):
+            os.makedirs(target, exist_ok=True)
+
+        self.target = target
 
         clean = bool(kwargs.get('clean', True))
         if clean is None:
@@ -102,51 +139,37 @@ class Collection:
             final_clean = app.config['collections_final_clean']
         self.needs_final_clean = final_clean
 
-        # Check if we manipulate data only in documentation folder.
-        # Any other location is not allowed.
-        if not os.path.realpath(target).startswith(os.path.realpath(app.confdir)):
-            raise CollectionsException(
-                'Target path is not part of documentation folder\n'
-                'Target path: {}\n'
-                'Sphinx app conf path: {}'.format(os.path.realpath(target),
-                                                  os.path.realpath(app.confdir)))
-
-        self.target = target
-
-        if not os.path.exists(target):
-            os.makedirs(target, exist_ok=True)
-
-        self.result = None
-
         self.config = kwargs
         self.config['name'] = self.name
         self.config['target'] = target
         if 'safe' not in self.config.keys():
             self.config['safe'] = True
 
+        # Driver init
         driver_name = kwargs.get('driver', None)
         if driver_name is None or driver_name not in DRIVERS.keys():
             raise Exception('Unknown driver: {}'.format(driver_name))
         self.driver = DRIVERS[kwargs['driver']](self.name, self.config)
 
+        self.result = None
+
         self.info('Initialised')
+
+    def __repr__(self):
+        return self.name
 
     def run(self):
         if self.active:
-            self.info('Execution started')
             self.result = self.driver.run()
-            self.info('Execution done')
-        else:
-            self.info('Not active. No execution')
+
+            self.executed = True
 
     def clean(self):
         if self.needs_clean and self.active:
-            self.info('Cleaning...')
             self.driver.clean()
 
     def final_clean(self):
         if self.needs_final_clean and self.active:
-            self.info('Final Cleaning...')
             self.driver.clean()
 
     def info(self, message):

@@ -105,6 +105,8 @@ project.
         }
     }
 
+.. _collections_active:
+
 active
 ~~~~~~
 ``active`` can be set to ``True`` or ``False``.
@@ -181,7 +183,30 @@ Default value can be changed for all collections by setting :ref:`conf_collectio
         }
     }
 
+.. _collections_tags:
 
+tags
+~~~~
+List of tags, which trigger an activation of the collection.
+Should be used together with :ref:`collections_active` set to ``False``, otherwise the collection gets always
+executed.
+
+.. code-block:: python
+
+    collections = {
+        'my_collection': {
+            'driver': 'copy',
+            'source': 'source path',
+            'active': False,
+            'tags': ['my_collection', 'dummy']
+        }
+    }
+
+Use ``-t tag`` option of ``sphinx-build`` command to trigger related collections.
+
+.. code-block:: text
+
+   sphinx-build -b html -t dummy . _build/html
 
 Driver Options
 --------------
