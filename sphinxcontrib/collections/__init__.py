@@ -1,1 +1,1 @@
-from sphinxcontrib.collections.collections import setup  # NOQA
+from sphinxcontrib.collections.main import setup  # NOQA

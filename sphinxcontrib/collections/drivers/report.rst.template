@@ -1,0 +1,20 @@
+Collection Report
+=================
+
+{%  for collection in collections %}
+{{ collection.name }}
+{{ "-" * collection.name|length }}
+**Active**: {{ collection.active }}
+
+**Executed**: {{ collection.executed }}
+
+**Source**: {{ collection.config['source'] }}
+
+**Target**: {{ collection.config['target'] }}
+
+.. code-block:: text
+
+   {{ collection.config }}
+
+
+{% endfor %}

@@ -25,9 +25,21 @@ class Driver:
         self.config = config
 
     def run(self):
+        """
+        Is the main routine for the driver.
+
+        Must be implement by the parent driver class.
+        """
         raise NotImplementedError('run() function must be implemented by driver {} itself.'.format(self.name))
 
     def clean(self):
+        """
+        Cares about cleaning up the working space from actions performed in run().
+
+        Gets called normally at the beginning and add the end of collection handling.
+
+        Must be implement by the parent driver class.
+        """
         raise NotImplementedError('clean() function must be implemented by driver {} itself.'.format(self.name))
 
     def error(self, message, e=None):
@@ -49,9 +61,25 @@ class Driver:
             self._log.error(('{}{}'.format(self._prefix, message)))
 
     def info(self, message):
+        """
+        Writes a log message of level INFO.
+
+        Sets collection and driver information as prefix in front of the message
+
+        :param message: string
+        :return: None
+        """
         self._log.info('{}{}'.format(self._prefix, message))
 
     def debug(self, message):
+        """
+        Writes a log message of level DEBUG.
+
+        Sets collection and driver information as prefix in front of the message
+
+        :param message: string
+        :return: None
+        """
         self._log.debug('{}{}'.format(self._prefix, message))
 
 

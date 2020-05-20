@@ -28,10 +28,36 @@ author = 'team useblocks'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    'sphinx.ext.autodoc',
     'sphinxcontrib.collections'
 ]
 
+
+def my_func(config):
+    string = 'This data gets written into {}'.format(config['target'])
+    return string
+
+
+from sphinxcontrib.collections.drivers import Driver
+from sphinxcontrib.collections.api import register_driver
+
+
+class myDriver(Driver):
+    def run(self):
+        self.info('Run for source {}'.format(self.config['source']))
+
+    def clean(self):
+        self.info('Clean')
+
+register_driver('my_driver', myDriver)
+
+
 collections = {
+    'driver_test': {
+        'driver': 'my_driver',
+        'source': '../tests/dummy/',
+        'active': True,
+    },
     'copy_folder_test': {
         'driver': 'copy_folder',
         'source': '../tests/dummy/',
@@ -44,11 +70,28 @@ collections = {
         'target': 'dummy_new.rst',
         'active': True,
 
+    },
+    'string_test': {
+        'driver': 'string',
+        'source': 'Take **this**!!!',
+        'target': 'dummy_string.rst',
+        'active': True,
+    },
+    'function_test': {
+        'driver': 'function',
+        'source': my_func,
+        'target': 'dummy_function.rst',
+        'active': True,
+    },
+    'report': {
+        'driver': 'report',
+        'target': 'doc_collection_report.rst',
+        'active': True,
     }
 
 }
 
-collections_final_clean = True
+collections_final_clean = False
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
