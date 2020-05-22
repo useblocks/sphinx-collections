@@ -56,32 +56,32 @@ collections = {
     'driver_test': {
         'driver': 'my_driver',
         'source': '../tests/dummy/',
-        'active': True,
+        'active': False,
     },
     'copy_folder_test': {
         'driver': 'copy_folder',
         'source': '../tests/dummy/',
         'ignore': ['*.dat'],
-        'active': True,
+        'active': False,
     },
     'copy_file_test': {
         'driver': 'copy_file',
         'source': '../tests/dummy/dummy.rst',
         'target': 'dummy_new.rst',
-        'active': True,
+        'active': False,
 
     },
     'string_test': {
         'driver': 'string',
         'source': 'Take **this**!!!',
         'target': 'dummy_string.rst',
-        'active': True,
+        'active': False,
     },
     'function_test': {
         'driver': 'function',
         'source': my_func,
         'target': 'dummy_function.rst',
-        'active': True,
+        'active': False,
     },
     'report': {
         'driver': 'report',
@@ -91,8 +91,7 @@ collections = {
     'symlink_test': {
         'driver': 'symlink',
         'source': '../tests/dummy/',
-        #'target': 'doc_collection_report.rst',
-        'active': True,
+        'active': False,
     },
     'jinja_test': {
         'driver': 'jinja',
@@ -102,7 +101,7 @@ collections = {
             'name': 'me',
             'city': 'munich'
             },
-        'active': True,
+        'active': False,
     },
     'jinja_test_multiple': {
         'driver': 'jinja',
@@ -119,13 +118,12 @@ collections = {
             'city': 'Soest'
             },
         ],
-        'active': True,
+        'active': False,
     },
     'git_test': {
         'driver': 'git',
         'source': 'https://github.com/useblocks/sphinx_dummy.git',
-        #'target': 'doc_collection_report.rst',
-        'active': True,
+        'active': False,
     },
 
 }

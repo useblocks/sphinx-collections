@@ -16,13 +16,21 @@ collections have not been executed before this report gets generated.
       }
    }
 
+.. hint::
+
+   The ``executed`` option in the report for the current report-collection is always ``False``, as this
+   options gets changed **after** the report was successfully generated.
+
 
 The following template is used to build the report:
 
 .. literalinclude:: ../../sphinxcontrib/collections/drivers/report.rst.template
 
-**Example**:
+.. if-collection:: report
 
-This is the report of the latest run for this documentation.
+   Example Report
+   --------------
 
-.. literalinclude:: /_collections/doc_collection_report.rst
+   This is the report of the latest run for this documentation.
+
+   .. include:: /_collections/doc_collection_report.rst

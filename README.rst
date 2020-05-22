@@ -1,8 +1,5 @@
 **Complete documentation**: http://sphinx-collections.readthedocs.io/en/latest/
 
-.. image:: https://github.com/useblocks/sphinx-collections/raw/master/docs/_static/sphinx_collections_logo.png
-   :align: center
-
 .. From here shared with index.rst of docs folder. #SHARED_CONTENT
 
 .. image:: https://github.com/useblocks/sphinx-collections/raw/master/docs/_static/sphinx_collections_logo.png
@@ -16,23 +13,24 @@ documentation build.
    :align: center
 
 ``Sphinx Collections`` supports multiple collections, where each collection has its own
-source and target folder, specific configuration and use case based driver.
+source and target folder, specific configuration and
+`use case based driver <https://sphinx-collections.readthedocs.io/en/latest/drivers/index.html>`_.
 
 A collection can be activated by default or its usage can be triggered by Sphinx tags.
 
 Depending on the usage of a specific collection for a build, its content integration can be controlled by the
-``if-collection::`` directive.
+`if-collection:: directive <https://sphinx-collections.readthedocs.io/en/latest/directives.html#if-collection>`_ .
 
 Following use cases are supported:
 
-* Create file with content from string
-* Create file with content from function call
-* Copy single file from local path
-* Copy folder tree from local path
-* Create a symlink to a local target
-* Create a usage-report of collections
-* Clone git repository
-* Create multiple files based on jinja-template and specific data
+* `Create file with content from string <https://sphinx-collections.readthedocs.io/en/latest/drivers/string.html>`_
+* `Create file with content from function call <https://sphinx-collections.readthedocs.io/en/latest/drivers/function.html>`_
+* `Copy single file from local path <https://sphinx-collections.readthedocs.io/en/latest/drivers/copy_file.html>`_
+* `Copy folder tree from local path <https://sphinx-collections.readthedocs.io/en/latest/drivers/copy_folder.html>`_
+* `Create a symlink to a local target <https://sphinx-collections.readthedocs.io/en/latest/drivers/symlink.html>`_
+* `Create a usage-report of collections <https://sphinx-collections.readthedocs.io/en/latest/drivers/report.html>`_
+* `Clone git repository <https://sphinx-collections.readthedocs.io/en/latest/drivers/git.html>`_
+* `Create multiple files based on jinja-template and specific data <https://sphinx-collections.readthedocs.io/en/latest/drivers/jinja.html>`_
 
 ``Sphinx-Collections`` cares about keeping your collection folders clean before and after each build.
 
