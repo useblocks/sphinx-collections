@@ -2,6 +2,9 @@
 
 .. From here shared with index.rst of docs folder. #SHARED_CONTENT
 
+Welcome to
+==========
+
 .. image:: https://github.com/useblocks/sphinx-collections/raw/master/docs/_static/sphinx_collections_logo.png
    :align: center
 
@@ -9,17 +12,19 @@
 These files are added to the Sphinx Source Folder, so that Sphinx takes them into account for the overall
 documentation build.
 
-.. image:: https://github.com/useblocks/sphinx-collections/raw/master/docs/_static/sphinx_collections_chart.png
-   :align: center
-
 ``Sphinx Collections`` supports multiple collections, where each collection has its own
 source and target folder, specific configuration and
 `use case based driver <https://sphinx-collections.readthedocs.io/en/latest/drivers/index.html>`_.
+
+.. image:: https://github.com/useblocks/sphinx-collections/raw/master/docs/_static/sphinx_collections_chart.png
+   :align: center
 
 A collection can be activated by default or its usage can be triggered by Sphinx tags.
 
 Depending on the usage of a specific collection for a build, its content integration can be controlled by the
 `if-collection:: directive <https://sphinx-collections.readthedocs.io/en/latest/directives.html#if-collection>`_ .
+
+
 
 Following use cases are supported:
 
@@ -58,7 +63,9 @@ Then you can reference the copied files by using a toctree::
    .. toctree::
       _collections/my_files/index
 
-Please see the documentation of the needed Driver to know which options are available and necessary.
+Please see the
+`documentation of the needed Driver <https://sphinx-collections.readthedocs.io/en/latest/drivers/index.html>`_
+to know which options are available and necessary.
 
 Tag based collections
 ---------------------
@@ -94,6 +101,9 @@ Use ``if-collection`` to add content to a page only, if a specified collections 
 
           /_collections/my_test/index
           /_collections/my_data/index
+
+For more information take a look into the
+`documentation of if-collection <https://sphinx-collections.readthedocs.io/en/latest/directives.html#if-collection>`_.
 
 Motivation
 ----------
