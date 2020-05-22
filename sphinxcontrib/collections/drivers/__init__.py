@@ -1,3 +1,4 @@
+import os
 import sphinx
 
 from pkg_resources import parse_version
@@ -81,6 +82,38 @@ class Driver:
         :return: None
         """
         self._log.debug('{}{}'.format(self._prefix, message))
+
+    def get_source_path(self):
+        """
+        Returns absolute source path.
+        If source was configured as relative path, the absolute path is calculated
+        taking documentation confdir as base folder.
+
+        :return: path string
+        """
+        source = self.config.get('source', None)
+        if source is None:
+            self.error('Source must be defined')
+        if not os.path.isabs(source):
+            source = os.path.join(self.config['confdir'], source)
+        return source
+
+    def get_path(self, path):
+        """
+        Returns absolute path.
+        If path is given as relative path, the absolute path is calculated
+        taking documentation confdir as base folder.
+
+        :return: path string
+        """
+        if path is None:
+            self.error('Path must be defined')
+        if not isinstance(path, str):
+            self.debug('This functions makes mostly sense for string source only.')
+            return path
+        if not os.path.isabs(path):
+            path = os.path.join(self.config['confdir'], path)
+        return path
 
 
 class ColectionsDriverError(BaseException):

@@ -5,22 +5,36 @@
 
 .. From here shared with index.rst of docs folder. #SHARED_CONTENT
 
-Sphinx-Collections
-==================
+.. image:: https://github.com/useblocks/sphinx-collections/raw/master/docs/_static/sphinx_collections_logo.png
+   :align: center
 
-``Sphinx-Collections`` is a Sphinx extension to collect and generate additional files from different sources before
-Sphinx starts the overall build.
+``Sphinx-Collections`` is a Sphinx extension to collect and generate additional files from different sources.
+These files are added to the Sphinx Source Folder, so that Sphinx takes them into account for the overall
+documentation build.
 
-All collected and generated files get registered to the Sphinx Env and are therefore available during a Sphinx build.
+.. image:: https://github.com/useblocks/sphinx-collections/raw/master/docs/_static/sphinx_collections_chart.png
+   :align: center
 
-It was created to support the following use cases:
+``Sphinx Collections`` supports multiple collections, where each collection has its own
+source and target folder, specific configuration and use case based driver.
 
-* Grab additional ``.rst`` or ``md`` files from outside the ``docs`` source folder.
-* Merge multiple Sphinx projects into one project
-* Generate ``.rst`` and ``.md`` files based on data in ``json`` files.
+A collection can be activated by default or its usage can be triggered by Sphinx tags.
 
-Internally ``Sphinx-Collections`` is based on a set of ``drivers``, which support different use cases.
-Feel free to extend the list of available ``drivers`` by creating a PR in our github project.
+Depending on the usage of a specific collection for a build, its content integration can be controlled by the
+``if-collection::`` directive.
+
+Following use cases are supported:
+
+* Create file with content from string
+* Create file with content from function call
+* Copy single file from local path
+* Copy folder tree from local path
+* Create a symlink to a local target
+* Create a usage-report of collections
+* Clone git repository
+* Create multiple files based on jinja-template and specific data
+
+``Sphinx-Collections`` cares about keeping your collection folders clean before and after each build.
 
 Introduction
 ------------
@@ -35,7 +49,7 @@ Introduction
    }
 
 The driver ``copy_folder`` allows to copy local folders and their files into your Sphinx project.
-There are other drivers available, which support different use cases and and files locations.
+There are other drivers available, which support different use cases and and file locations.
 
 By default all files get copied to ``_collections/`` + ``collection_name``, so in this example the complete path
 inside your documentation folder would be ``_collections/my_files/``. The location can be set specific for each

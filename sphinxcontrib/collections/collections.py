@@ -8,6 +8,9 @@ from sphinxcontrib.collections.drivers.copy_file import CopyFileDriver
 from sphinxcontrib.collections.drivers.string import StringDriver
 from sphinxcontrib.collections.drivers.function import FunctionDriver
 from sphinxcontrib.collections.drivers.report import ReportDriver
+from sphinxcontrib.collections.drivers.symlink import SymlinkDriver
+from sphinxcontrib.collections.drivers.jinja import JinjaDriver
+from sphinxcontrib.collections.drivers.git import GitDriver
 
 sphinx_version = sphinx.__version__
 if parse_version(sphinx_version) >= parse_version("1.6"):
@@ -26,6 +29,9 @@ DRIVERS = {
     'string': StringDriver,
     'function': FunctionDriver,
     'report': ReportDriver,
+    'symlink': SymlinkDriver,
+    'jinja': JinjaDriver,
+    'git': GitDriver,
 }
 
 
@@ -52,9 +58,6 @@ def execute_collections(app, config):
 
 
 def final_clean_collections(app, exception):
-    if not bool(app.config['collections_final_clean']):
-        return
-
     LOG.info('Final clean of collections ...')
     for collection in COLLECTIONS:
         collection.final_clean()
@@ -88,7 +91,7 @@ class Collection:
 
         # Check if we manipulate data only in documentation folder.
         # Any other location is not allowed.
-        if not os.path.realpath(target).startswith(os.path.realpath(app.confdir)):
+        if not target.startswith(os.path.realpath(app.confdir)):
             raise CollectionsException(
                 'Target path is not part of documentation folder\n'
                 'Target path: {}\n'
@@ -100,18 +103,19 @@ class Collection:
 
         self.target = target
 
-        clean = bool(kwargs.get('clean', True))
+        clean = kwargs.get('clean', None)
         if clean is None:
             clean = app.config['collections_clean']
         self.needs_clean = clean
 
-        final_clean = bool(kwargs.get('final_clean', True))
+        final_clean = kwargs.get('final_clean', None)
         if final_clean is None:
             final_clean = app.config['collections_final_clean']
         self.needs_final_clean = final_clean
 
         self.config = kwargs
         self.config['name'] = self.name
+        self.config['confdir'] = self.app.confdir
         self.config['target'] = target
         if 'safe' not in self.config.keys():
             self.config['safe'] = True

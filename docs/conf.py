@@ -87,11 +87,50 @@ collections = {
         'driver': 'report',
         'target': 'doc_collection_report.rst',
         'active': True,
-    }
+    },
+    'symlink_test': {
+        'driver': 'symlink',
+        'source': '../tests/dummy/',
+        #'target': 'doc_collection_report.rst',
+        'active': True,
+    },
+    'jinja_test': {
+        'driver': 'jinja',
+        'source': 'examples/jinja_template.rst.temp',
+        'target': 'my_jinja_test_{{name}}.rst',
+        'data': {
+            'name': 'me',
+            'city': 'munich'
+            },
+        'active': True,
+    },
+    'jinja_test_multiple': {
+        'driver': 'jinja',
+        'source': 'examples/jinja_template.rst.temp',
+        'target': 'my_jinja_test_{{name|lower}}.rst',
+        'multiple_files': True,
+        'data': [
+            {
+            'name': 'Marco',
+            'city': 'Munich'
+            },
+            {
+            'name': 'Daniel',
+            'city': 'Soest'
+            },
+        ],
+        'active': True,
+    },
+    'git_test': {
+        'driver': 'git',
+        'source': 'https://github.com/useblocks/sphinx_dummy.git',
+        #'target': 'doc_collection_report.rst',
+        'active': True,
+    },
 
 }
 
-collections_final_clean = False
+collections_final_clean = True
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

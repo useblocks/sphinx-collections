@@ -4,7 +4,7 @@
 import os
 from setuptools import setup, find_packages
 
-requires = ['sphinx>2.0', 'jinja2']
+requires = ['sphinx>2.0', 'jinja2', 'gitpython']
 
 setup(
     name='sphinx-collections',

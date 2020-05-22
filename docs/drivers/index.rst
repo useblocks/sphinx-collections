@@ -11,16 +11,13 @@ Each collection must reference a single driver, which cares about:
 * Configured execution
 * Final clean up
 
-``Sphinx-Collections`` already provides some major drivers, which support different use case.
+``Sphinx-Collections`` already provides some major drivers, which support different use cases.
 
 .. toctree::
+   :glob:
    :maxdepth: 1
 
-   copy_folder
-   copy_file
-   string
-   function
-   report
+   *
 
 Own drivers
 -----------
@@ -51,7 +48,7 @@ Using own drivers instead of e.g. a pure function call has several advantages:
     register_driver('my_driver', myDriver)
 
     collections = {
-        'my_river_test': {
+        'my_driver_test': {
             'driver': 'my_driver',
             'source': '../tests/dummy/',
             'active': True,
