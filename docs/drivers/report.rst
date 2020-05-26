@@ -34,3 +34,7 @@ The following template is used to build the report:
    This is the report of the latest run for this documentation.
 
    .. include:: /_collections/doc_collection_report.rst
+
+Clean up behavior
+-----------------
+During clean up the target folders, which contains the report, gets deleted.

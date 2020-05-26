@@ -75,7 +75,7 @@ Use Sphinx tags to collect and integrate only needed data::
     collections = {
       'my_files': {
          'driver': 'copy',
-         'source': '../../extra_files/'
+         'source': '../../extra_files/',
          'tags': ['user_manual'],  # gets active, if "user_manual" is set as tag
          'active': False,  # by default, collection shall not be executed
       }

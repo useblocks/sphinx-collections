@@ -41,3 +41,6 @@ You can also use more complex strings by assigning them to a variable.
       }
    }
 
+Clean up behavior
+-----------------
+During clean up the created target file gets deleted.

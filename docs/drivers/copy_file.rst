@@ -14,3 +14,6 @@ Copies a a single from ``source`` to ``project``. Both should should have a vali
       }
    }
 
+Clean up behavior
+-----------------
+During clean up the target file gets deleted.

@@ -36,4 +36,6 @@ But this could be done by the function itself.
 
 **Default**: ``True``
 
-
+Clean up behavior
+-----------------
+The target folder/file gets deleted.

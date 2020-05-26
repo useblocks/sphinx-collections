@@ -21,6 +21,9 @@ URL must be given by ``source`` parameter.
 
    ``Git`` binary must be installed on the system, so that the used Python library ``gitpython`` can use it.
 
+Clean up behavior
+-----------------
+During clean up the local repository clone gets deleted.
 
 """
 

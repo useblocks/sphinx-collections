@@ -28,6 +28,10 @@ This symlink driver can deal with links to folders and files.
       }
    }
 
+Clean up behavior
+-----------------
+During clean up the symlink gets unlinked/removed.
+
 """
 
 import os
