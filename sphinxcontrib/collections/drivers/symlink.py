@@ -20,13 +20,12 @@ This symlink driver can deal with links to folders and files.
 .. code-block:: python
 
     collections = {
-      'my_files: {
+      'my_files': {
          'driver': 'symlink',
          'source': '../extra_files/',
          'target': 'my_data/'
-         }
       }
-   }
+    }
 
 Clean up behavior
 -----------------
@@ -35,6 +34,7 @@ During clean up the symlink gets unlinked/removed.
 """
 
 import os
+import shutil
 
 from sphinxcontrib.collections.drivers import Driver
 
@@ -51,7 +51,10 @@ class SymlinkDriver(Driver):
             return
 
         try:
-            os.symlink(source, target)
+            # if config['clean'] is not true, symlink exists already
+            if not os.path.islink(target):
+                os.symlink(source, target)
+             
         except IOError as e:
             self.error('Problems during creating of symlink.', e)
         except OSError as e:
@@ -62,8 +65,12 @@ class SymlinkDriver(Driver):
         source = self.get_path(self.config['source'])
         target = self.get_path(self.config['target'])
         try:
-            os.unlink(target)
-            self.info('Symlink removed: {}'.format(target))
+            if os.path.exists(os.path.realpath(target)):
+                if not os.path.islink(target):
+                    shutil.rmtree(target)
+                else:
+                    os.unlink(target)
+                self.info('Symlink removed: {}'.format(target))
         except FileNotFoundError:
             # Already cleaned? I'm okay with it.
             self.info('Symlink already cleaned: {}.'.format(target))

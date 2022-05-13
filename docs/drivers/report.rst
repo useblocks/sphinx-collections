@@ -9,12 +9,11 @@ collections have not been executed before this report gets generated.
 .. code-block:: python
 
     collections = {
-      'my_collection_report: {
+      'my_collection_report': {
          'driver': 'report',
          'target': 'reports/collections.rst'
-         }
-      }
-   }
+       }
+    }
 
 .. hint::
 

@@ -6,13 +6,12 @@ Copies a string defined in ``source`` into a file specified by ``target``.
 .. code-block:: python
 
     collections = {
-      'my_files: {
+      'my_files': {
          'driver': 'string',
          'source': 'Awesome, this is nice',
          'target': 'my_data/my_file.txt'
-         }
-      }
-   }
+        }
+    }
 
 You can also use more complex strings by assigning them to a variable.
 
@@ -33,13 +32,13 @@ You can also use more complex strings by assigning them to a variable.
     """
 
     collections = {
-      'my_files: {
+      'my_files': {
          'driver': 'string',
          'source': my_string,
          'target': 'my_data/my_file.txt'
-         }
-      }
-   }
+       }
+    }
+
 
 Clean up behavior
 -----------------

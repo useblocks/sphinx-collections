@@ -87,11 +87,18 @@ class Collection:
         if target is None:
             target = self.name
         if not os.path.isabs(target):
+            if not os.path.exists(collection_main_folder):
+                os.makedirs(collection_main_folder, exist_ok=True)
             target = os.path.join(collection_main_folder, target)
 
         # Check if we manipulate data only in documentation folder.
         # Any other location is not allowed.
-        if not target.startswith(os.path.realpath(app.confdir)):
+        target_inside_confdir = ( 
+            os.path.abspath(target).startswith(os.path.abspath(app.confdir)) if os.path.islink(target)
+            else os.path.realpath(target).startswith(os.path.realpath(app.confdir)) )
+            
+        
+        if not target_inside_confdir:
             raise CollectionsException(
                 'Target path is not part of documentation folder\n'
                 'Target path: {}\n'
@@ -99,7 +106,7 @@ class Collection:
                                                   os.path.realpath(app.confdir)))
 
         if not os.path.exists(os.path.dirname(target)):
-            os.makedirs(target, exist_ok=True)
+            os.makedirs(os.path.dirname(target), exist_ok=True)
 
         self.target = target
 

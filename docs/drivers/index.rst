@@ -53,6 +53,7 @@ Using own drivers instead of e.g. a pure function call has several advantages:
             'source': '../tests/dummy/',
             'active': True,
         },
+    }
 
 If you have created an awesome driver, please consider to provide it to ``Sphinx-Collections`` by creating
 a PR on our `github project <https://github.com/useblocks/sphinx-collections>`_ .
