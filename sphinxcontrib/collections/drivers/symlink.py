@@ -52,9 +52,10 @@ class SymlinkDriver(Driver):
 
         try:
             # if config['clean'] is not true, symlink exists already
-            if not os.path.islink(target):
+            if not os.path.exists(os.path.realpath(target)):
                 os.symlink(source, target)
-             
+            else:
+                self.info('Symlink already exists: {}'.format(os.path.realpath(target)))
         except IOError as e:
             self.error('Problems during creating of symlink.', e)
         except OSError as e:
