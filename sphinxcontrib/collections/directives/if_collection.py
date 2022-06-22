@@ -1,7 +1,6 @@
 import sphinx
-
 from docutils import nodes
-from docutils.parsers.rst import directives, Directive
+from docutils.parsers.rst import Directive, directives
 from docutils.statemachine import ViewList
 from pkg_resources import parse_version
 from sphinx.util.nodes import nested_parse_with_titles
@@ -24,6 +23,7 @@ class CollectionsIfDirective(Directive):
     """
     Directive to add content based on executed collections.
     """
+
     has_content = True
     required_arguments = 1
     optional_arguments = 0
@@ -44,11 +44,11 @@ class CollectionsIfDirective(Directive):
 
     def run(self):
         collections = sphinxcontrib.collections.collections.COLLECTIONS
-        search_cols = [x.strip() for x in self.arguments[0].split(',')]
+        search_cols = [x.strip() for x in self.arguments[0].split(",")]
 
         found = False
         for search_col in search_cols:
-            if search_col == '':
+            if search_col == "":
                 continue
 
             for collection in collections:
@@ -70,4 +70,3 @@ class CollectionsIfDirective(Directive):
             collection_node += node_collection_content.children
 
         return [collection_node]
-

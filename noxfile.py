@@ -1,7 +1,7 @@
 import nox
 from nox_poetry import session
 
-PYTHON_VERSIONS = ["3.6", "3.8", "3.9.7"]
+PYTHON_VERSIONS = ["3.6", "3.8", "3.9.7", "3.10.4"]
 SPHINX_VERSIONS = ["4.1", "4.2", "4.3", "4.4", "4.5"]
 TEST_DEPENDENCIES = [
     "pytest",
@@ -11,7 +11,7 @@ TEST_DEPENDENCIES = [
 
 
 def is_supported(python: str, sphinx: str) -> bool:
-    return not (python == "3.6" and sphinx not in ["3.2"])
+    return not (python in ["3.10.4"] and sphinx in ["4.1"])
 
 
 def run_tests(session, sphinx):

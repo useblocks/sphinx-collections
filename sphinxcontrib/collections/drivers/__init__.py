@@ -1,6 +1,6 @@
 import os
-import sphinx
 
+import sphinx
 from pkg_resources import parse_version
 
 sphinx_version = sphinx.__version__
@@ -13,13 +13,12 @@ else:
 
 
 class Driver:
-
     def __init__(self, collection, config=None):
         self._log = logging.getLogger(__name__)
         self.name = self.__class__.__name__
         self.collection = collection
 
-        self._prefix = '  {}: ({}) '.format(self.collection, self.name)
+        self._prefix = "  {}: ({}) ".format(self.collection, self.name)
 
         if config is None:
             config = {}
@@ -31,7 +30,7 @@ class Driver:
 
         Must be implement by the parent driver class.
         """
-        raise NotImplementedError('run() function must be implemented by driver {} itself.'.format(self.name))
+        raise NotImplementedError("run() function must be implemented by driver {} itself.".format(self.name))
 
     def clean(self):
         """
@@ -41,7 +40,7 @@ class Driver:
 
         Must be implement by the parent driver class.
         """
-        raise NotImplementedError('clean() function must be implemented by driver {} itself.'.format(self.name))
+        raise NotImplementedError("clean() function must be implemented by driver {} itself.".format(self.name))
 
     def error(self, message, e=None):
         """
@@ -53,13 +52,13 @@ class Driver:
         :return: None
         """
         if e is not None and isinstance(e, BaseException):
-            if self.config['safe']:
-                raise ColectionsDriverError('{}{}'.format(self._prefix, message)) from e
-            self._log.error(('{}{} - {}'.format(self._prefix, message, e)))
+            if self.config["safe"]:
+                raise ColectionsDriverError("{}{}".format(self._prefix, message)) from e
+            self._log.error(("{}{} - {}".format(self._prefix, message, e)))
         else:
-            if self.config['safe']:
-                raise ColectionsDriverError('{}{}'.format(self._prefix, message))
-            self._log.error(('{}{}'.format(self._prefix, message)))
+            if self.config["safe"]:
+                raise ColectionsDriverError("{}{}".format(self._prefix, message))
+            self._log.error(("{}{}".format(self._prefix, message)))
 
     def info(self, message):
         """
@@ -70,7 +69,7 @@ class Driver:
         :param message: string
         :return: None
         """
-        self._log.info('{}{}'.format(self._prefix, message))
+        self._log.info("{}{}".format(self._prefix, message))
 
     def debug(self, message):
         """
@@ -81,7 +80,7 @@ class Driver:
         :param message: string
         :return: None
         """
-        self._log.debug('{}{}'.format(self._prefix, message))
+        self._log.debug("{}{}".format(self._prefix, message))
 
     def get_source_path(self):
         """
@@ -91,11 +90,11 @@ class Driver:
 
         :return: path string
         """
-        source = self.config.get('source', None)
+        source = self.config.get("source", None)
         if source is None:
-            self.error('Source must be defined')
+            self.error("Source must be defined")
         if not os.path.isabs(source):
-            source = os.path.join(self.config['confdir'], source)
+            source = os.path.join(self.config["confdir"], source)
         return source
 
     def get_path(self, path):
@@ -107,12 +106,12 @@ class Driver:
         :return: path string
         """
         if path is None:
-            self.error('Path must be defined')
+            self.error("Path must be defined")
         if not isinstance(path, str):
-            self.debug('This functions makes mostly sense for string source only.')
+            self.debug("This functions makes mostly sense for string source only.")
             return path
         if not os.path.isabs(path):
-            path = os.path.join(self.config['confdir'], path)
+            path = os.path.join(self.config["confdir"], path)
         return path
 
 

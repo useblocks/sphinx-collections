@@ -2,13 +2,7 @@ import os
 
 extensions = ["sphinxcontrib.collections"]
 
-collections = {
-    'my_files': {
-        'driver': 'symlink',
-        'source': '../config_symlink_data',
-        'target': 'my_data'
-        }
-}
+collections = {"my_files": {"driver": "symlink", "source": "../config_symlink_data", "target": "my_data"}}
 
 
 test_dir = os.path.dirname(__file__)

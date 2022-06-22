@@ -3,10 +3,10 @@ import os
 extensions = ["sphinxcontrib.collections"]
 
 collections = {
-    'my_files': {
-        'driver': 'string',
-        'source': 'Awesome, this is nice',
-        'target': 'my_data/my_file.txt',
+    "my_files": {
+        "driver": "string",
+        "source": "Awesome, this is nice",
+        "target": "my_data/my_file.txt",
     }
 }
 

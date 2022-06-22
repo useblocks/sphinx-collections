@@ -9,7 +9,4 @@ def test_config_string(test_app):
     app.build()
     html = Path(app.outdir, "index.html").read_text()
 
-    assert (
-        'Awesome, this is nice' in html
-    )
-
+    assert "Awesome, this is nice" in html
