@@ -13,7 +13,9 @@ class CopyFolderDriver(Driver):
             return
 
         try:
-            copytree(self.config["source"], self.config["target"], ignore_patterns(*self.config.get("ignore", [])))
+            copytree(self.config['source'],
+                     self.config['target'],
+                     ignore=ignore_patterns(*self.config.get('ignore', [])))
         except IOError as e:
             self.error("Problems during copying folder.", e)
 
