@@ -31,26 +31,25 @@ During clean up the local repository clone gets deleted.
 from shutil import rmtree
 
 from git import Repo
+
 from sphinxcontrib.collections.drivers import Driver
 
 
 class GitDriver(Driver):
-
     def run(self):
-        self.info('Cloning git repository...')
+        self.info("Cloning git repository...")
 
         try:
-            Repo.clone_from(self.config['source'],
-                            self.config['target'])
+            Repo.clone_from(self.config["source"], self.config["target"])
         except Exception as e:
-            self.error('Problems during cloning repository.', e)
+            self.error("Problems during cloning repository.", e)
 
     def clean(self):
         try:
-            rmtree(self.config['target'])
-            self.info('Repository deleted: {}'.format(self.config['target']))
+            rmtree(self.config["target"])
+            self.info("Repository deleted: {}".format(self.config["target"]))
         except FileNotFoundError:
             # Already cleaned? I'm okay with it.
-            self.info('Cloned repository folder already cleaned.')
+            self.info("Cloned repository folder already cleaned.")
         except IOError as e:
-            self.error('Problems during cleaning for collection {}'.format(self.config['name']), e)
+            self.error("Problems during cleaning for collection {}".format(self.config["name"]), e)

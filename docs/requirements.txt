@@ -1,0 +1,5 @@
+sphinx>=3.4
+sphinxcontrib-collections
+jinja2
+gitpython
+

@@ -11,14 +11,13 @@ Executes a function referenced by ``source`` and writes its return value into a 
         return string
 
     collections = {
-      'my_files: {
+      'my_files': {
          'driver': 'function',
          'source': my_own_data,
          'target': 'my_data/my_file.txt'
          'write_result': True
          }
-      }
-   }
+    }
 
 The specified function gets 1 argument during the call: A dictionary which contains the complete configuration of the
 collection.

@@ -1,0 +1,60 @@
+[tool.poetry]
+name = "sphinxcontrib-collections"
+
+# !! Don't miss updates in setup.py or related files !!!
+version = "0.0.2"
+
+description = "Sphinx collections extension for mapping directories and services as document folders"
+authors = ["team useblocks <info@useblocks.com>"]
+license = "MIT"
+readme = "README.rst"
+repository = "http://github.com/useblocks/sphinxcontrib-collections"
+documentation = "http://sphinx-collections.readthedocs.io/en/latest/"
+classifiers=[
+        'Development Status :: 3 - Alpha',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: MIT License',
+        'Operating System :: OS Independent',
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Topic :: Documentation',
+        'Topic :: Utilities',
+        'Framework :: Sphinx :: Extension',
+    ]
+
+packages = [
+    {include = "sphinxcontrib", from = "."}
+]
+
+[tool.poetry.dependencies]
+python = ">3.6.2,<4.0"
+sphinx = [
+    { version = ">3.4", python = ">=3.7" },
+]
+
+[tool.poetry.dev-dependencies]
+pre-commit = "^2"
+# test dependencies
+pytest = ">6.2.5"
+pytest-xdist="*"  # parallelisation
+
+# formatting dependencies
+black = "^22.3"
+isort = "^5.7.0"
+
+[tool.black]
+line-length = 120
+
+[tool.isort]
+profile = "black"
+
+[tool.poetry.extras]
+docs = ["sphinx>=4.0"]
+
+[build-system]
+requires = ["poetry-core @ git+https://github.com/python-poetry/poetry-core.git@master"]
+build-backend = "poetry.core.masonry.api"
+
