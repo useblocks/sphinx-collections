@@ -1,7 +1,7 @@
 copy_file
 =========
 
-Copies a a single from ``source`` to ``project``. Both should should have a valid file name in it.
+Copies a single file from ``source`` to ``project``. Both should should have a valid file name in it.
 
 .. code-block:: python
 
