@@ -52,7 +52,7 @@ Introduction
    }
 
 The driver ``copy_folder`` allows to copy local folders and their files into your Sphinx project.
-There are other drivers available, which support different use cases and and file locations.
+There are other drivers available, which support different use cases and file locations.
 
 By default all files get copied to ``_collections/`` + ``collection_name``, so in this example the complete path
 inside your documentation folder would be ``_collections/my_files/``. The location can be set specific for each
