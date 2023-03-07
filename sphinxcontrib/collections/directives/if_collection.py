@@ -12,7 +12,7 @@ if parse_version(sphinx_version) >= parse_version("1.6"):
     from sphinx.util import logging
 else:
     import logging
-logger = logging.getLogger(__name__)
+logging = logging.getLogger(__name__)
 
 
 class CollectionsIf(nodes.General, nodes.Element):
@@ -32,7 +32,7 @@ class CollectionsIfDirective(Directive):
 
     def __init__(self, *args, **kw):
         super(CollectionsIfDirective, self).__init__(*args, **kw)
-        self.log = logging.getLogger(__name__)
+        self.log = logging
 
     @property
     def docname(self):
