@@ -55,7 +55,7 @@ class Driver:
         """
         Writes a log message of level INFO.
 
-        Sets collection and driver information as prefix in front of the message
+        Prefixes collection information and driver name in front of the message.
 
         :param message: string
         :return: None
