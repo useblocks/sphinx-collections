@@ -44,11 +44,11 @@ class Driver:
         """
         if e is not None and isinstance(e, BaseException):
             if self.config["safe"]:
-                raise ColectionsDriverError(f"{self._prefix}{message}") from e
+                raise CollectionsDriverError(f"{self._prefix}{message}") from e
             self._log.error(f"{self._prefix}{message} - {e}")
         else:
             if self.config["safe"]:
-                raise ColectionsDriverError(f"{self._prefix}{message}")
+                raise CollectionsDriverError(f"{self._prefix}{message}")
             self._log.error(f"{self._prefix}{message}")
 
     def info(self, message):
@@ -106,5 +106,5 @@ class Driver:
         return path
 
 
-class ColectionsDriverError(BaseException):
+class CollectionsDriverError(BaseException):
     pass
