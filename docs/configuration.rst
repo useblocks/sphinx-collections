@@ -44,12 +44,12 @@ collections_clean
 
 If ``True`` all configured target locations get wiped out at the beginning.
 
-The related driver of the collection decides, if and clean is needed and how it must be performed.
+The related driver of the collection specifies if cleaning is needed and how to perform it.
 
 If you use nested collections, e.g ``_collections/collection_A/collection_B`` the outer clean routine of
 a collection (here ``collection_A``) deletes also the content of other collections (here ``collection_B``).
 
-Can be overwritten for each collection be setting :ref:`collections_clean`.
+This can be overwritten for each collection be configuring :ref:`collections_clean`.
 
 **Default**: ``True``
 
@@ -60,10 +60,11 @@ Can be overwritten for each collection be setting :ref:`collections_clean`.
 collections_final_clean
 -----------------------
 
-If ``True`` all collections start their clean-up routine after a Sphinx build is done.
-Normally It doesn't matter if the build was an success or stopped.
+If this option is set to ``True``, all collections start their clean-up
+routine after a Sphinx build is done.  Normally It doesn't matter if
+the build was a success or failed.
 
-Works similar to :ref:`conf_collections_clean`, but at the end of the build instead before.
+Works similarly to :ref:`conf_collections_clean`, but at the end of the build instead before.
 
 Can be overwritten for each collection be setting :ref:`collections_final_clean`.
 
