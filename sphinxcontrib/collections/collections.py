@@ -81,9 +81,6 @@ class Collection:
                 os.makedirs(collection_main_folder, exist_ok=True)
             target = os.path.join(collection_main_folder, target)
 
-        if not os.path.exists(os.path.dirname(target)):
-            os.makedirs(os.path.dirname(target), exist_ok=True)
-
         self.target = target
 
         clean = kwargs.get("clean")
