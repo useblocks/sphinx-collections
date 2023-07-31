@@ -52,7 +52,7 @@ line-length = 120
 profile = "black"
 
 [tool.poetry.extras]
-docs = ["sphinx>=4.0"]
+docs = ["sphinx"]
 
 [build-system]
 requires = ["poetry-core @ git+https://github.com/python-poetry/poetry-core.git@master"]
