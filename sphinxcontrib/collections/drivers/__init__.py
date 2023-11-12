@@ -26,11 +26,11 @@ class Driver:
 
     def run(self):
         """
-        Is the main routine for the driver.
+        This is the main routine for the driver.
 
-        Must be implement by the parent driver class.
+        The run method must be implement by the subclassed driver.
         """
-        raise NotImplementedError("run() function must be implemented by driver {} itself.".format(self.name))
+        raise NotImplementedError("run() function must be implemented by the driver {} itself.".format(self.name))
 
     def clean(self):
         """
@@ -53,18 +53,18 @@ class Driver:
         """
         if e is not None and isinstance(e, BaseException):
             if self.config["safe"]:
-                raise ColectionsDriverError("{}{}".format(self._prefix, message)) from e
+                raise CollectionsDriverError("{}{}".format(self._prefix, message)) from e
             self._log.error(("{}{} - {}".format(self._prefix, message, e)))
         else:
             if self.config["safe"]:
-                raise ColectionsDriverError("{}{}".format(self._prefix, message))
+                raise CollectionsDriverError("{}{}".format(self._prefix, message))
             self._log.error(("{}{}".format(self._prefix, message)))
 
     def info(self, message):
         """
         Writes a log message of level INFO.
 
-        Sets collection and driver information as prefix in front of the message
+        Prefixes collection information and driver name in front of the message.
 
         :param message: string
         :return: None
@@ -115,5 +115,5 @@ class Driver:
         return path
 
 
-class ColectionsDriverError(BaseException):
+class CollectionsDriverError(BaseException):
     pass
