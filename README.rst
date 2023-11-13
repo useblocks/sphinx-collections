@@ -39,6 +39,18 @@ Following use cases are supported:
 
 ``Sphinx-Collections`` cares about keeping your collection folders clean before and after each build.
 
+Installation
+------------
+Install via pip: ``pip install sphinx-collection``.
+
+The add the extension to the ``conf.py`` file of the Sphinx project:
+```python
+extensions = [
+    "sphinxcontrib.collections",
+    # other extensions
+]
+```
+
 Introduction
 ------------
 
