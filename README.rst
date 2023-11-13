@@ -43,13 +43,13 @@ Installation
 ------------
 Install via pip: ``pip install sphinx-collection``.
 
-The add the extension to the ``conf.py`` file of the Sphinx project:
-```python
-extensions = [
-    "sphinxcontrib.collections",
-    # other extensions
-]
-```
+Then add the extension to the ``conf.py`` file of the Sphinx project::
+
+   extensions = [
+       "sphinxcontrib.collections",
+       # other extensions
+   ]
+
 
 Introduction
 ------------
