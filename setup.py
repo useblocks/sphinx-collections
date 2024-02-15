@@ -8,7 +8,7 @@ requires = ['sphinx>3.4', 'jinja2', 'gitpython']
 
 setup(
     name='sphinx-collections',
-    version='0.0.2',
+    version='0.2.0',
     url='http://github.com/useblocks/sphinx-collections',
     download_url='http://pypi.python.org/pypi/sphinx-collections',
     license='MIT',
