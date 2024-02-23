@@ -2,7 +2,7 @@
 name = "sphinxcontrib-collections"
 
 # !! Don't miss updates in setup.py or related files !!!
-version = "0.0.2"
+version = "0.2.0"
 
 description = "Sphinx collections extension for mapping directories and services as document folders"
 authors = ["team useblocks <info@useblocks.com>"]
