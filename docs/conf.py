@@ -4,6 +4,8 @@
 # list see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
+import datetime
+
 from sphinxcontrib.collections.api import register_driver
 from sphinxcontrib.collections.drivers import Driver
 
@@ -21,7 +23,7 @@ from sphinxcontrib.collections.drivers import Driver
 # -- Project information -----------------------------------------------------
 
 project = "sphinx-collections"
-copyright = "2020, team useblocks"
+copyright = f"{datetime.datetime.now().year}, team useblocks"
 author = "team useblocks"
 
 
@@ -31,6 +33,9 @@ author = "team useblocks"
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = ["sphinx.ext.autodoc", "sphinxcontrib.collections"]
+
+suppress_warnings = ["config.cache"]
+"""Required due to my_func being not picklable for cache."""
 
 
 def my_func(config):
@@ -155,6 +160,5 @@ html_theme_options = {
     "extra_nav_links": {
         "collections@PyPi": "https://pypi.python.org/pypi/sphinx-collections/",
         "collections@github": "https://github.com/useblocks/sphinx-collections",
-        "collections@travis": "https://travis-ci.org/useblocks/sphinx-collections",
     },
 }
