@@ -3,7 +3,7 @@
 Drivers
 =======
 
-Drivers represents the technical function, which gets configured by the configuration given by a collection.
+Drivers represent the tasks which get configured by a collection's configuration.
 
 Each collection must reference a single driver, which cares about:
 
@@ -19,16 +19,16 @@ Each collection must reference a single driver, which cares about:
 
    *
 
-Own drivers
------------
+Custom drivers
+--------------
 
-You can specify own drivers directly inside your ``conf.py`` file.
+You can create your own drivers directly inside your ``conf.py`` file.
 
-Using own drivers instead of e.g. a pure function call has several advantages:
+Creating your own drivers has several advantages:
 
 * Configuration handling.
 * Correct and easy logging.
-* Executed during correct Sphinx phases.
+* Ensure execution during correct Sphinx phases.
 * Integrated clean-up.
 * Report capabilities.
 
@@ -55,7 +55,7 @@ Using own drivers instead of e.g. a pure function call has several advantages:
         },
     }
 
-If you have created an awesome driver, please consider to provide it to ``Sphinx-Collections`` by creating
+If you have created an awesome driver, please consider contributing it to ``Sphinx-Collections`` by creating
 a PR on our `github project <https://github.com/useblocks/sphinx-collections>`_ .
 This would help our little Sphinx community a lot. Thanks!
 
