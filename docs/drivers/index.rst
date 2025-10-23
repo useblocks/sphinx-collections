@@ -20,7 +20,7 @@ Each collection must reference a single driver, which cares about:
    *
 
 Custom drivers
------------
+--------------
 
 You can create your own drivers directly inside your ``conf.py`` file.
 
