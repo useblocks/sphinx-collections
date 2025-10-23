@@ -15,7 +15,7 @@ jobs:
           python-version-file: ".python-version"
       - uses: pre-commit/action@v3.0.1
   tests:
-    name: Test (${{ matrix.tox-env }}, ${{ matrix.os }})
+    name: Test ${{ matrix.tox-env }}-${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
@@ -29,7 +29,7 @@ jobs:
           - py312-sphinx82
           - py313-sphinx74
           - py313-sphinx82
-    runs-on: ${{ matrix.os }}-${{ matrix.tox-env }}
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
@@ -43,7 +43,7 @@ jobs:
       - name: Run tox environment
         run: uv run tox -e ${{ matrix.tox-env }}
   docs:
-    name: Documentation build
+    name: Docs
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
