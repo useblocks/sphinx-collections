@@ -1,13 +1,9 @@
 name: ci
-
 on:
   push:
     branches: [master]
   pull_request:
-
-
 jobs:
-
   lint:
     name: Lint
     runs-on: ubuntu-latest
@@ -18,14 +14,13 @@ jobs:
         with:
           python-version-file: ".python-version"
       - uses: pre-commit/action@v3.0.1
-
   tests:
     name: Test (${{ matrix.tox-env }}, ${{ matrix.os }})
     strategy:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        tox-env: 
+        tox-env:
           - py310-sphinx74
           - py310-sphinx82
           - py311-sphinx74
@@ -34,9 +29,7 @@ jobs:
           - py312-sphinx82
           - py313-sphinx74
           - py313-sphinx82
-
     runs-on: ${{ matrix.os }}-${{ matrix.tox-env }}
-
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
@@ -49,11 +42,9 @@ jobs:
         run: uv pip install --system tox tox-uv
       - name: Run tox environment
         run: uv run tox -e ${{ matrix.tox-env }}
-
   docs:
     name: Documentation build
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
@@ -66,20 +57,15 @@ jobs:
         run: uv pip install --system tox tox-uv
       - name: Build documentation
         run: uv run tox -e docs
-
   all_good:
     # This job does nothing and is only used for the branch protection
     # see https://github.com/marketplace/actions/alls-green#why
-
     if: ${{ !cancelled() }}
-
     needs:
       - lint
       - tests
       - docs
-
     runs-on: ubuntu-latest
-
     steps:
       - name: Decide whether the needed jobs succeeded or failed
         uses: re-actors/alls-green@release/v1

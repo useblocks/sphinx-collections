@@ -4,6 +4,9 @@
 # list see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
+from sphinxcontrib.collections.api import register_driver
+from sphinxcontrib.collections.drivers import Driver
+
 # -- Path setup --------------------------------------------------------------
 
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -17,9 +20,9 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'sphinx-collections'
-copyright = '2020, team useblocks'
-author = 'team useblocks'
+project = "sphinx-collections"
+copyright = "2020, team useblocks"
+author = "team useblocks"
 
 
 # -- General configuration ---------------------------------------------------
@@ -27,116 +30,99 @@ author = 'team useblocks'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = [
-    'sphinx.ext.autodoc',
-    'sphinxcontrib.collections'
-]
+extensions = ["sphinx.ext.autodoc", "sphinxcontrib.collections"]
 
 
 def my_func(config):
-    string = 'This data gets written into {}'.format(config['target'])
+    string = "This data gets written into {}".format(config["target"])
     return string
 
 
-from sphinxcontrib.collections.drivers import Driver
-from sphinxcontrib.collections.api import register_driver
-
-
-class myDriver(Driver):
+class MyDriver(Driver):
     def run(self):
-        self.info('Run for source {}'.format(self.config['source']))
+        self.info("Run for source {}".format(self.config["source"]))
 
     def clean(self):
-        self.info('Clean')
+        self.info("Clean")
 
-register_driver('my_driver', myDriver)
+
+register_driver("my_driver", MyDriver)
 
 
 collections = {
-    'driver_test': {
-        'driver': 'my_driver',
-        'source': '../tests/dummy/',
-        'active': False,
+    "driver_test": {
+        "driver": "my_driver",
+        "source": "../tests/dummy/",
+        "active": False,
     },
-    'copy_folder_test': {
-        'driver': 'copy_folder',
-        'source': '../tests/dummy/',
-        'ignore': ['*.dat'],
-        'active': False,
+    "copy_folder_test": {
+        "driver": "copy_folder",
+        "source": "../tests/dummy/",
+        "ignore": ["*.dat"],
+        "active": False,
     },
-    'copy_file_test': {
-        'driver': 'copy_file',
-        'source': '../tests/dummy/dummy.rst',
-        'target': 'dummy_new.rst',
-        'active': False,
-
+    "copy_file_test": {
+        "driver": "copy_file",
+        "source": "../tests/dummy/dummy.rst",
+        "target": "dummy_new.rst",
+        "active": False,
     },
-    'string_test': {
-        'driver': 'string',
-        'source': 'Take **this**!!!',
-        'target': 'dummy_string.rst',
-        'active': False,
+    "string_test": {
+        "driver": "string",
+        "source": "Take **this**!!!",
+        "target": "dummy_string.rst",
+        "active": False,
     },
-    'function_test': {
-        'driver': 'function',
-        'source': my_func,
-        'target': 'dummy_function.rst',
-        'active': False,
+    "function_test": {
+        "driver": "function",
+        "source": my_func,
+        "target": "dummy_function.rst",
+        "active": False,
     },
-    'report': {
-        'driver': 'report',
-        'target': 'doc_collection_report.rst',
-        'active': True,
+    "report": {
+        "driver": "report",
+        "target": "doc_collection_report.rst",
+        "active": True,
     },
-    'symlink_test': {
-        'driver': 'symlink',
-        'source': '../tests/dummy/',
-        'active': False,
+    "symlink_test": {
+        "driver": "symlink",
+        "source": "../tests/dummy/",
+        "active": False,
     },
-    'jinja_test': {
-        'driver': 'jinja',
-        'source': 'examples/jinja_template.rst.temp',
-        'target': 'my_jinja_test_{{name}}.rst',
-        'data': {
-            'name': 'me',
-            'city': 'munich'
-            },
-        'active': False,
+    "jinja_test": {
+        "driver": "jinja",
+        "source": "examples/jinja_template.rst.temp",
+        "target": "my_jinja_test_{{name}}.rst",
+        "data": {"name": "me", "city": "munich"},
+        "active": False,
     },
-    'jinja_test_multiple': {
-        'driver': 'jinja',
-        'source': 'examples/jinja_template.rst.temp',
-        'target': 'my_jinja_test_{{name|lower}}.rst',
-        'multiple_files': True,
-        'data': [
-            {
-            'name': 'Marco',
-            'city': 'Munich'
-            },
-            {
-            'name': 'Daniel',
-            'city': 'Soest'
-            },
+    "jinja_test_multiple": {
+        "driver": "jinja",
+        "source": "examples/jinja_template.rst.temp",
+        "target": "my_jinja_test_{{name|lower}}.rst",
+        "multiple_files": True,
+        "data": [
+            {"name": "Marco", "city": "Munich"},
+            {"name": "Daniel", "city": "Soest"},
         ],
-        'active': False,
+        "active": False,
     },
-    'git_test': {
-        'driver': 'git',
-        'source': 'https://github.com/useblocks/sphinx_dummy.git',
-        'active': False,
+    "git_test": {
+        "driver": "git",
+        "source": "https://github.com/useblocks/sphinx_dummy.git",
+        "active": False,
     },
-
 }
 
 collections_final_clean = True
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = ["_templates"]
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
 
 # -- Options for HTML output -------------------------------------------------
@@ -144,27 +130,31 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+html_theme = "alabaster"
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+html_static_path = ["_static"]
 
-html_sidebars = {'**': ['about.html', 'navigation.html', 'searchbox.html'], }
+html_sidebars = {
+    "**": ["about.html", "navigation.html", "searchbox.html"],
+}
 
 html_theme_options = {
-    'logo': 'sphinx_collections_logo.png',
-    'logo_name': False,
+    "logo": "sphinx_collections_logo.png",
+    "logo_name": False,
     # 'description': "an extension for sphinx",
-    'logo_text_align': "center",
-    'github_user': 'useblocks',
-    'github_repo': 'sphinx-collections',
-    'github_banner': True,
-    'github_button': True,
-    'github_type': 'star',
-    'fixed_sidebar': True,
-    'extra_nav_links': {'collections@PyPi': "https://pypi.python.org/pypi/sphinx-collections/",
-                        'collections@github': "https://github.com/useblocks/sphinx-collections",
-                        'collections@travis': "https://travis-ci.org/useblocks/sphinx-collections"}
+    "logo_text_align": "center",
+    "github_user": "useblocks",
+    "github_repo": "sphinx-collections",
+    "github_banner": True,
+    "github_button": True,
+    "github_type": "star",
+    "fixed_sidebar": True,
+    "extra_nav_links": {
+        "collections@PyPi": "https://pypi.python.org/pypi/sphinx-collections/",
+        "collections@github": "https://github.com/useblocks/sphinx-collections",
+        "collections@travis": "https://travis-ci.org/useblocks/sphinx-collections",
+    },
 }

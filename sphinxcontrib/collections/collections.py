@@ -66,7 +66,7 @@ class Collection:
         # Check if tags are set and change active to True if this is the case
         self.tags = tags
         for tag in tags:
-            if tag in self.app.tags.tags.keys() and self.app.tags.tags[tag]:
+            if self.app.tags.tags.get(tag):
                 self.active = True
 
         self._prefix = f"  {self.name}: "
@@ -100,7 +100,7 @@ class Collection:
         self.config["name"] = self.name
         self.config["confdir"] = self.app.confdir
         self.config["target"] = target
-        if "safe" not in self.config.keys():
+        if "safe" not in self.config:
             self.config["safe"] = True
 
         # Driver init

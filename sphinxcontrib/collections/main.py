@@ -1,5 +1,5 @@
-import sphinx
 from packaging.version import Version
+import sphinx
 
 from sphinxcontrib.collections.collections import (
     clean_collections,

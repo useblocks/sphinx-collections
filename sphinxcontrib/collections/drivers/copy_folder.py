@@ -13,10 +13,10 @@ class CopyFolderDriver(Driver):
             return
 
         try:
-            copytree(self.config['source'],
-                     self.config['target'],
-                     ignore=ignore_patterns(*self.config.get('ignore', [])))
-        except IOError as e:
+            copytree(
+                self.config["source"], self.config["target"], ignore=ignore_patterns(*self.config.get("ignore", []))
+            )
+        except OSError as e:
             self.error("Problems during copying folder.", e)
 
     def clean(self):
@@ -25,5 +25,5 @@ class CopyFolderDriver(Driver):
             self.info("Folder deleted: {}".format(self.config["target"]))
         except FileNotFoundError:
             pass  # Already cleaned? I'm okay with it.
-        except IOError as e:
+        except OSError as e:
             self.error("Problems during cleaning for collection {}".format(self.config["name"]), e)

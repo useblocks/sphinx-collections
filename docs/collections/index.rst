@@ -215,4 +215,3 @@ Options for drivers are also stored directly with the configuration for collecti
 
 Please take a look into the specific :ref:`Driver <drivers>` to get information
 about its additional configuration possibilities.
-

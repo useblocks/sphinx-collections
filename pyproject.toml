@@ -7,46 +7,42 @@ name = "sphinxcontrib-collections"
 version = "0.2.0"
 description = "Sphinx collections extension for mapping directories and services as document folders"
 readme = "README.rst"
-license = {text = "MIT"}
+license = { text = "MIT" }
 requires-python = ">=3.10"
-authors = [
-    {name = "team useblocks", email = "info@useblocks.com"},
-]
+authors = [{ name = "team useblocks", email = "info@useblocks.com" }]
 classifiers = [
-    "Development Status :: 4 - Beta",
-    "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
-    "Programming Language :: Python",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: 3.13",
-    "Topic :: Documentation",
-    "Topic :: Utilities",
-    "Framework :: Sphinx :: Extension",
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Documentation",
+  "Topic :: Utilities",
+  "Framework :: Sphinx :: Extension",
 ]
 dependencies = [
-    "sphinx>=4.0",
-    "jinja2>=3.0",
-    "gitpython>=3.1",
-    "setuptools",  # Required for pkg_resources namespace package support
-    "packaging>=20.0",  # Modern replacement for pkg_resources.parse_version
+  "sphinx>=4.0",
+  "jinja2>=3.0",
+  "gitpython>=3.1",
+  "setuptools",      # Required for pkg_resources namespace package support
+  "packaging>=20.0", # Modern replacement for pkg_resources.parse_version
 ]
 
 [project.optional-dependencies]
 dev = [
-    "pre-commit>=3.5",
-    "pytest>=7.0",
-    "pytest-xdist>=3.0",
-    "tox>=4.0",
-    "tox-uv>=1.0",
-    "ruff>=0.4.0",
+  "pre-commit>=3.5",
+  "pytest>=7.0",
+  "pytest-xdist>=3.0",
+  "tox>=4.0",
+  "tox-uv>=1.0",
+  "ruff>=0.4.0",
 ]
-docs = [
-    "sphinx>=4.0",
-]
+docs = ["sphinx>=4.0"]
 
 [project.urls]
 Homepage = "https://github.com/useblocks/sphinx-collections"
@@ -63,7 +59,7 @@ target-version = "py310"
 
 [tool.ruff.lint]
 extend-select = [
-  "B",   # flake8-bugbear  
+  "B",   # flake8-bugbear
   "C4",  # flake8-comprehensions
   "F",   # pyflakes (includes unused imports)
   "I",   # isort

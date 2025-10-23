@@ -1,5 +1,5 @@
-import os
 from inspect import isfunction
+import os
 
 from sphinxcontrib.collections.drivers import Driver
 
@@ -23,7 +23,7 @@ class FunctionDriver(Driver):
             try:
                 with open(self.config["target"], "w") as target_file:
                     target_file.writelines(result.split("\n"))
-            except IOError as e:
+            except OSError as e:
                 self.error("Problems during writing function result to file", e)
 
     def clean(self):
@@ -32,5 +32,5 @@ class FunctionDriver(Driver):
             self.info("File deleted: {}".format(self.config["target"]))
         except FileNotFoundError:
             pass  # Already cleaned? I'm okay with it.
-        except IOError as e:
+        except OSError as e:
             self.error("Problems during cleaning for collection {}".format(self.config["name"]), e)

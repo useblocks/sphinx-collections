@@ -40,4 +40,3 @@ docs-linkcheck:
 format:
 	uv run ruff format ${SRC_FILES}
 	uv run ruff check --fix ${SRC_FILES}
-

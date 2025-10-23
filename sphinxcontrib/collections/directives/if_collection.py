@@ -31,7 +31,7 @@ class CollectionsIfDirective(Directive):
     option_spec = {}
 
     def __init__(self, *args, **kw):
-        super(CollectionsIfDirective, self).__init__(*args, **kw)
+        super().__init__(*args, **kw)
         self.log = logging.getLogger(__name__)
 
     @property

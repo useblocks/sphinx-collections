@@ -1,7 +1,5 @@
 import os
 
-from packaging.version import Version
-import sphinx
 from sphinx.util import logging
 
 

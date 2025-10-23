@@ -14,7 +14,7 @@ class StringDriver(Driver):
         try:
             with open(self.config["target"], "w") as target_file:
                 target_file.writelines(self.config["source"].split("\n"))
-        except IOError as e:
+        except OSError as e:
             self.error("Problems during writing string to file", e)
 
     def clean(self):
@@ -23,5 +23,5 @@ class StringDriver(Driver):
             self.info("File deleted: {}".format(self.config["target"]))
         except FileNotFoundError:
             pass  # Already cleaned? I'm okay with it.
-        except IOError as e:
+        except OSError as e:
             self.error("Problems during cleaning for collection {}".format(self.config["name"]), e)

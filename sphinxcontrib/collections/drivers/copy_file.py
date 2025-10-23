@@ -14,7 +14,7 @@ class CopyFileDriver(Driver):
 
         try:
             copyfile(self.config["source"], self.config["target"])
-        except IOError as e:
+        except OSError as e:
             self.error("Problems during copying file.", e)
 
     def clean(self):
@@ -23,5 +23,5 @@ class CopyFileDriver(Driver):
             self.info("File deleted: {}".format(self.config["target"]))
         except FileNotFoundError:
             pass  # Already cleaned? I'm okay with it.
-        except IOError as e:
+        except OSError as e:
             self.error("Problems during cleaning for collection {}".format(self.config["name"]), e)
