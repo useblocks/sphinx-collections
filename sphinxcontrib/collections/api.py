@@ -9,7 +9,7 @@ def register_driver(name, driver_class):
     try:
         DRIVERS[name] = driver_class
     except KeyError:
-        raise SphinxCollectionsApiError("Driver with name {} already exists.".format(name))
+        raise SphinxCollectionsApiError(f"Driver with name {name} already exists.")
 
 
 class SphinxCollectionsApiError(BaseException):

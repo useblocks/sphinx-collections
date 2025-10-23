@@ -100,7 +100,7 @@ class JinjaDriver(Driver):
         if not multiple_files:
             data = [data]
 
-        self.info("Creating {} file/s from Jinja template...".format(len(data)))
+        self.info(f"Creating {len(data)} file/s from Jinja template...")
         for datum in data:
             source = Template(self.config["source"]).render(**datum)
             target = Template(self.config["target"]).render(**datum)
@@ -109,11 +109,12 @@ class JinjaDriver(Driver):
             target = self.get_path(target)
 
             if not os.path.exists(source):
-                self.error("Source {} does not exist".format(source))
+                self.error(f"Source {source} does not exist")
                 return
 
             try:
-                template = Template(open(source).read())
+                with open(source) as source_file:
+                    template = Template(source_file.read())
                 result = template.render(**datum)
             except Exception as e:
                 self.error("Problems during creating of symlink.", e)
@@ -121,7 +122,7 @@ class JinjaDriver(Driver):
             try:
                 with open(target, "w") as target_file:
                     target_file.write(result)
-            except IOError as e:
+            except OSError as e:
                 self.error("Problems during writing rendered template to target", e)
 
     def clean(self):
@@ -133,7 +134,7 @@ class JinjaDriver(Driver):
         if not multiple_files:
             data = [data]
 
-        self.info("Cleaning {} jinja Based file/s ...".format(len(data)))
+        self.info(f"Cleaning {len(data)} jinja Based file/s ...")
 
         for datum in data:
             target = Template(self.config["target"]).render(**datum)
@@ -141,8 +142,8 @@ class JinjaDriver(Driver):
 
             try:
                 os.remove(target)
-                self.info("  File deleted: {}".format(target))
+                self.info(f"  File deleted: {target}")
             except FileNotFoundError:
                 pass  # Already cleaned? I'm okay with it.
-            except IOError as e:
+            except OSError as e:
                 self.error("Problems during cleaning for collection {}".format(self.config["name"]), e)

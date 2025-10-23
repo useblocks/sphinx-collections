@@ -1,15 +1,6 @@
 import os
 
-import sphinx
-from pkg_resources import parse_version
-
-sphinx_version = sphinx.__version__
-if parse_version(sphinx_version) >= parse_version("1.6"):
-    from sphinx.util import logging
-else:
-    import logging
-
-    logging.basicConfig()  # Only need to do this once
+from sphinx.util import logging
 
 
 class Driver:
@@ -18,7 +9,7 @@ class Driver:
         self.name = self.__class__.__name__
         self.collection = collection
 
-        self._prefix = "  {}: ({}) ".format(self.collection, self.name)
+        self._prefix = f"  {self.collection}: ({self.name}) "
 
         if config is None:
             config = {}
@@ -30,7 +21,7 @@ class Driver:
 
         Must be implement by the parent driver class.
         """
-        raise NotImplementedError("run() function must be implemented by driver {} itself.".format(self.name))
+        raise NotImplementedError(f"run() function must be implemented by driver {self.name} itself.")
 
     def clean(self):
         """
@@ -40,7 +31,7 @@ class Driver:
 
         Must be implement by the parent driver class.
         """
-        raise NotImplementedError("clean() function must be implemented by driver {} itself.".format(self.name))
+        raise NotImplementedError(f"clean() function must be implemented by driver {self.name} itself.")
 
     def error(self, message, e=None):
         """
@@ -53,12 +44,12 @@ class Driver:
         """
         if e is not None and isinstance(e, BaseException):
             if self.config["safe"]:
-                raise ColectionsDriverError("{}{}".format(self._prefix, message)) from e
-            self._log.error(("{}{} - {}".format(self._prefix, message, e)))
+                raise ColectionsDriverError(f"{self._prefix}{message}") from e
+            self._log.error(f"{self._prefix}{message} - {e}")
         else:
             if self.config["safe"]:
-                raise ColectionsDriverError("{}{}".format(self._prefix, message))
-            self._log.error(("{}{}".format(self._prefix, message)))
+                raise ColectionsDriverError(f"{self._prefix}{message}")
+            self._log.error(f"{self._prefix}{message}")
 
     def info(self, message):
         """
@@ -69,7 +60,7 @@ class Driver:
         :param message: string
         :return: None
         """
-        self._log.info("{}{}".format(self._prefix, message))
+        self._log.info(f"{self._prefix}{message}")
 
     def debug(self, message):
         """
@@ -80,7 +71,7 @@ class Driver:
         :param message: string
         :return: None
         """
-        self._log.debug("{}{}".format(self._prefix, message))
+        self._log.debug(f"{self._prefix}{message}")
 
     def get_source_path(self):
         """

@@ -27,7 +27,6 @@ During clean up the local repository clone gets deleted.
 
 """
 
-
 from shutil import rmtree
 
 from git import Repo
@@ -51,5 +50,5 @@ class GitDriver(Driver):
         except FileNotFoundError:
             # Already cleaned? I'm okay with it.
             self.info("Cloned repository folder already cleaned.")
-        except IOError as e:
+        except OSError as e:
             self.error("Problems during cleaning for collection {}".format(self.config["name"]), e)
