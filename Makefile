@@ -1,4 +1,4 @@
-SRC_FILES = sphinxcontrib/ tests/ noxfile.py
+SRC_FILES = sphinxcontrib/ tests/
 
 .PHONY: list
 list:
@@ -10,34 +10,34 @@ lint:
 
 .PHONY: test
 test:
-	poetry run pytest -n auto --tb=long tests/
+	uv run pytest -n auto --tb=long tests/
 
-.PHONY: test
+.PHONY: test-short
 test-short:
-	poetry run pytest -n auto --tb=long --ignore-glob="*official*" tests/
+	uv run pytest -n auto --tb=long --ignore-glob="*official*" tests/
 
 .PHONY: test-matrix
 test-matrix:
-	nox
+	uv run tox
 
 .PHONY: docs-html
 docs-html:
-	poetry run sphinx-build -a -E -j auto -b html docs/ docs/_build
+	uv run sphinx-build -a -E -j auto -b html docs/ docs/_build
 
-.PHONY: docs-html
+.PHONY: docs-html-fast
 docs-html-fast:
-	poetry run sphinx-build -j auto -b html docs/ docs/_build
+	uv run sphinx-build -j auto -b html docs/ docs/_build
 
 .PHONY: docs-pdf
 docs-pdf:
-	poetry run make --directory docs/ clean && make --directory docs/ latexpdf
-
+	uv run make --directory docs/ clean && uv run make --directory docs/ latexpdf
 
 .PHONY: docs-linkcheck
 docs-linkcheck:
-	poetry run make --directory docs/ linkcheck
+	uv run make --directory docs/ linkcheck
 
 .PHONY: format
 format:
-	poetry run black ${SRC_FILES}
-	poetry run isort ${SRC_FILES}
+	uv run ruff format ${SRC_FILES}
+	uv run ruff check --fix ${SRC_FILES}
+

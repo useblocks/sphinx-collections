@@ -1,7 +1,6 @@
 import os
 
-import sphinx
-from pkg_resources import parse_version
+from sphinx.util import logging
 
 from sphinxcontrib.collections.drivers.copy_file import CopyFileDriver
 from sphinxcontrib.collections.drivers.copy_folder import CopyFolderDriver
@@ -11,14 +10,6 @@ from sphinxcontrib.collections.drivers.jinja import JinjaDriver
 from sphinxcontrib.collections.drivers.report import ReportDriver
 from sphinxcontrib.collections.drivers.string import StringDriver
 from sphinxcontrib.collections.drivers.symlink import SymlinkDriver
-
-sphinx_version = sphinx.__version__
-if parse_version(sphinx_version) >= parse_version("1.6"):
-    from sphinx.util import logging
-else:
-    import logging
-
-    logging.basicConfig()  # Only need to do this once
 
 LOG = logging.getLogger(__name__)
 COLLECTIONS = []
@@ -53,9 +44,7 @@ def execute_collections(app, config):
         try:
             collection.run()
         except Exception as e:
-            LOG.error(
-                "Error executing driver {} for collection {}. {}".format(collection.driver.name, collection.name, e)
-            )
+            LOG.error(f"Error executing driver {collection.driver.name} for collection {collection.name}. {e}")
 
 
 def final_clean_collections(app, exception):
@@ -80,11 +69,11 @@ class Collection:
             if tag in self.app.tags.tags.keys() and self.app.tags.tags[tag]:
                 self.active = True
 
-        self._prefix = "  {}: ".format(self.name)
+        self._prefix = f"  {self.name}: "
 
         collection_main_folder = os.path.join(app.confdir, app.config["collections_target"])
 
-        target = kwargs.get("target", None)
+        target = kwargs.get("target")
         if target is None:
             target = self.name
         if not os.path.isabs(target):
@@ -97,12 +86,12 @@ class Collection:
 
         self.target = target
 
-        clean = kwargs.get("clean", None)
+        clean = kwargs.get("clean")
         if clean is None:
             clean = app.config["collections_clean"]
         self.needs_clean = clean
 
-        final_clean = kwargs.get("final_clean", None)
+        final_clean = kwargs.get("final_clean")
         if final_clean is None:
             final_clean = app.config["collections_final_clean"]
         self.needs_final_clean = final_clean
@@ -115,9 +104,9 @@ class Collection:
             self.config["safe"] = True
 
         # Driver init
-        driver_name = kwargs.get("driver", None)
-        if driver_name is None or driver_name not in DRIVERS.keys():
-            raise Exception("Unknown driver: {}".format(driver_name))
+        driver_name = kwargs.get("driver")
+        if driver_name is None or driver_name not in DRIVERS:
+            raise Exception(f"Unknown driver: {driver_name}")
         self.driver = DRIVERS[kwargs["driver"]](self.name, self.config)
 
         # Check if we manipulate data only in documentation folder.
@@ -131,11 +120,9 @@ class Collection:
         if not target_inside_confdir:
             raise CollectionsException(
                 "Target path is not part of documentation folder\n"
-                "Target path abs: {}\n"
-                "Target path: {}\n"
-                "Sphinx app conf path: {}\n".format(
-                    os.path.abspath(target), os.path.realpath(target), os.path.realpath(app.confdir)
-                )
+                f"Target path abs: {os.path.abspath(target)}\n"
+                f"Target path: {os.path.realpath(target)}\n"
+                f"Sphinx app conf path: {os.path.realpath(app.confdir)}\n"
             )
 
         self.result = None
@@ -160,15 +147,15 @@ class Collection:
             self.driver.clean()
 
     def info(self, message):
-        self._log.info("{}{}".format(self._prefix, message))
+        self._log.info(f"{self._prefix}{message}")
 
     def warn(self, message):
-        self._log.warn("{}{}".format(self._prefix, message))
+        self._log.warn(f"{self._prefix}{message}")
 
     def error(self, message):
         if self.config["safe"]:
-            raise CollectionsException("{}{}".format(self._prefix, message))
-        self._log.info("{}{}".format(self._prefix, message))
+            raise CollectionsException(f"{self._prefix}{message}")
+        self._log.info(f"{self._prefix}{message}")
 
 
 class CollectionsException(BaseException):
