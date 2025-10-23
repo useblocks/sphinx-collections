@@ -102,7 +102,6 @@ deps =
     sphinx82: sphinx==8.2.*
 extras = docs
 commands =
-    pip freeze
     pytest -n auto --tb=long tests/
 
 [testenv:docs]
