@@ -22,7 +22,6 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
         tox-env:
           - py310-sphinx74
-          - py310-sphinx82
           - py311-sphinx74
           - py311-sphinx82
           - py312-sphinx74
