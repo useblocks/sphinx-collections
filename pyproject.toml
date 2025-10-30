@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "sphinxcontrib-collections"
-version = "0.2.0"
+version = "0.3.0"
 description = "Sphinx collections extension for mapping directories and services as document folders"
 readme = "README.rst"
 license = { text = "MIT" }
