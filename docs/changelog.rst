@@ -45,6 +45,10 @@ This release renamed the Python package from ``sphinxcontrib.collections`` to ``
         from sphinx_collections.api import register_driver
         from sphinx_collections.drivers import Driver
 
+- 🔧 Add RTD config (:pr:`37`)
+
+  Required to deploy the documentation to readthedocs.io.
+
 .. _`release:0.3.0`:
 
 0.3.0
@@ -56,7 +60,7 @@ This release renamed the Python package from ``sphinxcontrib.collections`` to ``
 This is a release after a long time, to bring the package up to date with latest
 packaging and CI practices. Also some minor fixes and improvements have been made.
 
-.. note:: The PyPI released failed due to a packaging issue. Please use 0.3.1.
+.. note:: The PyPI released failed due to a packaging issue. Please use :ref:`release:0.3.1`.
 
 - 🔧 Year 2025 package infrastructure (:pr:`29`)
 
