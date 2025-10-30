@@ -41,15 +41,41 @@ Following use cases are supported:
 
 Installation
 ------------
-Install via pip: ``pip install sphinx-collection``.
 
-Then add the extension to the ``conf.py`` file of the Sphinx project::
+Install via pip: ``pip install sphinx-collections``.
+
+Then add the extension to the ``conf.py`` file of your Sphinx project::
 
   extensions = [
       "sphinx_collections",
       # other extensions
   ]
 
+.. important::
+
+   **Breaking Change in Version 0.3.0**
+
+   The package has been renamed from ``sphinxcontrib.collections`` to ``sphinx_collections``.
+
+   The PyPI package name is still ``sphinx-collections``, but the import/extension name has changed:
+
+   **Old (before 0.3.0):**
+
+   .. code-block:: python
+
+      # In conf.py
+      extensions = [
+          "sphinxcontrib.collections",  # OLD - no longer works
+      ]
+
+   **New (0.3.0 and later):**
+
+   .. code-block:: python
+
+      # In conf.py
+      extensions = [
+          "sphinx_collections",  # NEW
+      ]
 
 Introduction
 ------------
