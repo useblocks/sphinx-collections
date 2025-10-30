@@ -1,7 +1,7 @@
 import os
 from shutil import copyfile
 
-from sphinxcontrib.collections.drivers import Driver
+from sphinx_collections.drivers import Driver
 
 
 class CopyFileDriver(Driver):

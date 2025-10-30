@@ -6,8 +6,8 @@
 
 import datetime
 
-from sphinxcontrib.collections.api import register_driver
-from sphinxcontrib.collections.drivers import Driver
+from sphinx_collections.api import register_driver
+from sphinx_collections.drivers import Driver
 
 # -- Path setup --------------------------------------------------------------
 
@@ -34,7 +34,7 @@ author = "team useblocks"
 # ones.
 extensions = [
     "sphinx.ext.autodoc",
-    "sphinxcontrib.collections",
+    "sphinx_collections",
     "sphinx.ext.extlinks",
 ]
 

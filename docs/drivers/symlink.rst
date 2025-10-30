@@ -1,1 +1,1 @@
-.. automodule:: sphinxcontrib.collections.drivers.symlink
+.. automodule:: sphinx_collections.drivers.symlink

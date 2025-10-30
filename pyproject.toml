@@ -1,9 +1,9 @@
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["flit_core >=3.4,<4"]
+build-backend = "flit_core.buildapi"
 
 [project]
-name = "sphinxcontrib-collections"
+name = "sphinx-collections"
 version = "0.3.0"
 description = "Sphinx collections extension for mapping directories and services as document folders"
 readme = "README.rst"
@@ -49,9 +49,6 @@ Documentation = "https://sphinx-collections.readthedocs.io/en/latest/"
 Repository = "https://github.com/useblocks/sphinx-collections"
 "Bug Tracker" = "https://github.com/useblocks/sphinx-collections/issues"
 
-[tool.hatch.build.targets.wheel]
-packages = ["sphinxcontrib"]
-
 [tool.ruff]
 line-length = 120
 target-version = "py310"
@@ -72,7 +69,7 @@ extend-select = [
 extend-ignore = ["B904", "ISC001", "ICN001", "N818", "RUF012"]
 
 [tool.ruff.lint.isort]
-known-first-party = ["sphinxcontrib"]
+known-first-party = ["sphinx_collections"]
 force-sort-within-sections = true
 
 [tool.tox]

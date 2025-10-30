@@ -1,6 +1,6 @@
 import os
 
-extensions = ["sphinxcontrib.collections"]
+extensions = ["sphinx_collections"]
 
 collections = {
     "my_files": {

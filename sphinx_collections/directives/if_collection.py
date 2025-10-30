@@ -5,7 +5,7 @@ from packaging.version import Version
 import sphinx
 from sphinx.util.nodes import nested_parse_with_titles
 
-import sphinxcontrib.collections.collections
+import sphinx_collections.collections
 
 sphinx_version = sphinx.__version__
 if Version(sphinx_version) >= Version("1.6"):
@@ -43,7 +43,7 @@ class CollectionsIfDirective(Directive):
         return self.state.document.settings.env
 
     def run(self):
-        collections = sphinxcontrib.collections.collections.COLLECTIONS
+        collections = sphinx_collections.collections.COLLECTIONS
         search_cols = [x.strip() for x in self.arguments[0].split(",")]
 
         found = False

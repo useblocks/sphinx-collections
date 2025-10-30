@@ -3,6 +3,15 @@
 Configuration
 =============
 
+.. important::
+
+   **Package renamed in version 0.3.0**
+
+   If you're upgrading from version 0.2.x, the extension name has changed:
+
+   - **OLD:** ``extensions = ["sphinxcontrib.collections"]``
+   - **NEW:** ``extensions = ["sphinx_collections"]``
+
 .. _conf_collections:
 
 collections

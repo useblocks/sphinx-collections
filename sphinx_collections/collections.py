@@ -2,14 +2,14 @@ import os
 
 from sphinx.util import logging
 
-from sphinxcontrib.collections.drivers.copy_file import CopyFileDriver
-from sphinxcontrib.collections.drivers.copy_folder import CopyFolderDriver
-from sphinxcontrib.collections.drivers.function import FunctionDriver
-from sphinxcontrib.collections.drivers.git import GitDriver
-from sphinxcontrib.collections.drivers.jinja import JinjaDriver
-from sphinxcontrib.collections.drivers.report import ReportDriver
-from sphinxcontrib.collections.drivers.string import StringDriver
-from sphinxcontrib.collections.drivers.symlink import SymlinkDriver
+from sphinx_collections.drivers.copy_file import CopyFileDriver
+from sphinx_collections.drivers.copy_folder import CopyFolderDriver
+from sphinx_collections.drivers.function import FunctionDriver
+from sphinx_collections.drivers.git import GitDriver
+from sphinx_collections.drivers.jinja import JinjaDriver
+from sphinx_collections.drivers.report import ReportDriver
+from sphinx_collections.drivers.string import StringDriver
+from sphinx_collections.drivers.symlink import SymlinkDriver
 
 LOG = logging.getLogger(__name__)
 COLLECTIONS = []

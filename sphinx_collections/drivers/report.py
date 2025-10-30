@@ -2,12 +2,12 @@ import os
 
 from jinja2 import Template
 
-from sphinxcontrib.collections.drivers import Driver
+from sphinx_collections.drivers import Driver
 
 
 class ReportDriver(Driver):
     def run(self):
-        from sphinxcontrib.collections.collections import COLLECTIONS
+        from sphinx_collections.collections import COLLECTIONS
 
         self.info("Add collection report to file...")
 
