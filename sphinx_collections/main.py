@@ -1,13 +1,13 @@
 from packaging.version import Version
 import sphinx
 
-from sphinxcontrib.collections.collections import (
+from sphinx_collections.collections import (
     clean_collections,
     collect_collections,
     execute_collections,
     final_clean_collections,
 )
-from sphinxcontrib.collections.directives.if_collection import (
+from sphinx_collections.directives.if_collection import (
     CollectionsIf,
     CollectionsIfDirective,
 )

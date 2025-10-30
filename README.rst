@@ -45,10 +45,10 @@ Install via pip: ``pip install sphinx-collection``.
 
 Then add the extension to the ``conf.py`` file of the Sphinx project::
 
-   extensions = [
-       "sphinxcontrib.collections",
-       # other extensions
-   ]
+  extensions = [
+      "sphinx_collections",
+      # other extensions
+  ]
 
 
 Introduction

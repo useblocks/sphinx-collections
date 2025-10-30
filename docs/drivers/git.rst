@@ -1,1 +1,1 @@
-.. automodule:: sphinxcontrib.collections.drivers.git
+.. automodule:: sphinx_collections.drivers.git

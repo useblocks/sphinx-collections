@@ -1,7 +1,7 @@
 import os
 from shutil import copytree, ignore_patterns, rmtree
 
-from sphinxcontrib.collections.drivers import Driver
+from sphinx_collections.drivers import Driver
 
 
 class CopyFolderDriver(Driver):

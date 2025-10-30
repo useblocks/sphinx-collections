@@ -1,1 +1,1 @@
-.. automodule:: sphinxcontrib.collections.drivers.jinja
+.. automodule:: sphinx_collections.drivers.jinja

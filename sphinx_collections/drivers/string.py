@@ -1,6 +1,6 @@
 import os
 
-from sphinxcontrib.collections.drivers import Driver
+from sphinx_collections.drivers import Driver
 
 
 class StringDriver(Driver):

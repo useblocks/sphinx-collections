@@ -34,8 +34,8 @@ Creating your own drivers has several advantages:
 
 .. code-block::
 
-    from sphinxcontrib.collections.drivers import Driver
-    from sphinxcontrib.collections.api import register_driver
+    from sphinx_collections.drivers import Driver
+    from sphinx_collections.api import register_driver
 
 
     class myDriver(Driver):
@@ -62,7 +62,7 @@ This would help our little Sphinx community a lot. Thanks!
 Driver class
 ~~~~~~~~~~~~
 
-.. autoclass:: sphinxcontrib.collections.drivers.Driver
+.. autoclass:: sphinx_collections.drivers.Driver
    :members:
    :undoc-members:
    :private-members:

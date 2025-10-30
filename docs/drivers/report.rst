@@ -23,7 +23,7 @@ collections have not been executed before this report gets generated.
 
 The following template is used to build the report:
 
-.. literalinclude:: ../../sphinxcontrib/collections/drivers/report.rst.template
+.. literalinclude:: ../../sphinx_collections/drivers/report.rst.template
 
 .. if-collection:: report
 
