@@ -5,7 +5,7 @@ Configuration
 
 .. important::
 
-   **Package Renamed in Version 0.3.0**
+   **Package renamed in version 0.3.0**
 
    If you're upgrading from version 0.2.x, the extension name has changed:
 

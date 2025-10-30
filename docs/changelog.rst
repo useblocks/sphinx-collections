@@ -1,6 +1,46 @@
 Changelog
 =========
 
+Unreleased
+----------
+
+This release renamed the Python package from ``sphinxcontrib.collections`` to ``sphinx_collections``.
+The PyPI package name is still ``sphinx-collections``.
+
+- ‼️ Dissolve sphinxcontrib namespace package (:pr:`38`)
+
+  The ``sphinxcontrib`` namespace has been removed completely and the package
+  is now a standalone package named ``sphinx_collections``. This simplifies
+  packaging and avoides conflicts.
+
+  **Migration guide:**
+
+  1. **Update your Sphinx conf.py:**
+
+     .. code-block:: python
+
+        # OLD (no longer works)
+        extensions = [
+            "sphinxcontrib.collections",
+        ]
+
+        # NEW (required for 0.3.0+)
+        extensions = [
+            "sphinx_collections",
+        ]
+
+  #. **Update any custom driver imports in your code** (if you created custom drivers):
+
+     .. code-block:: python
+
+        # OLD
+        from sphinxcontrib.collections.api import register_driver
+        from sphinxcontrib.collections.drivers import Driver
+
+        # NEW
+        from sphinx_collections.api import register_driver
+        from sphinx_collections.drivers import Driver
+
 .. _`release:0.3.0`:
 
 0.3.0
@@ -12,40 +52,7 @@ Changelog
 This is a release after a long time, to bring the package up to date with latest
 packaging and CI practices. Also some minor fixes and improvements have been made.
 
-.. important::
-
-   **BREAKING CHANGE: Package Renamed**
-
-   The Python package has been renamed from ``sphinxcontrib.collections`` to ``sphinx_collections``.
-   The PyPI package name is still ``sphinx-collections``.
-
-   **Migration Guide:**
-
-   1. **Update your Sphinx conf.py:**
-
-      .. code-block:: python
-
-         # OLD (no longer works)
-         extensions = [
-             "sphinxcontrib.collections",
-         ]
-
-         # NEW (required for 0.3.0+)
-         extensions = [
-             "sphinx_collections",
-         ]
-
-   #. **Update any custom driver imports in your code** (if you created custom drivers):
-
-      .. code-block:: python
-
-         # OLD
-         from sphinxcontrib.collections.api import register_driver
-         from sphinxcontrib.collections.drivers import Driver
-
-         # NEW
-         from sphinx_collections.api import register_driver
-         from sphinx_collections.drivers import Driver
+.. note:: The PyPI released failed due to a packaging issue. Please use 0.3.1.
 
 - 🔧 Year 2025 package infrastructure (:pr:`29`)
 
@@ -59,9 +66,8 @@ packaging and CI practices. Also some minor fixes and improvements have been mad
 
 - 🔧 Remove namespace init (:pr:`35`, :issue:`25`)
 
-  The ``sphinxcontrib`` namespace has been removed completely and the package
-  is now a standalone package named ``sphinx_collections``. This simplifies
-  packaging and avoides conflicts.
+  The ``__init__.py`` files for the ``sphinxcontrib`` namespace have been removed
+  to avoid conflicts with other packages in the same namespace.
 
 .. _`release:0.2.0`:
 
