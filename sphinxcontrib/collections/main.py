@@ -21,7 +21,7 @@ else:
     logging.basicConfig()  # Only need to do this once
 
 LOG = logging.getLogger(__name__)
-VERSION = "0.2.0"
+VERSION = "0.3.0"
 
 
 def setup(app):

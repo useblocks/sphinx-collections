@@ -32,7 +32,11 @@ author = "team useblocks"
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ["sphinx.ext.autodoc", "sphinxcontrib.collections"]
+extensions = [
+    "sphinx.ext.autodoc",
+    "sphinxcontrib.collections",
+    "sphinx.ext.extlinks",
+]
 
 suppress_warnings = ["config.cache"]
 """Required due to my_func being not picklable for cache."""
@@ -161,4 +165,12 @@ html_theme_options = {
         "collections@PyPi": "https://pypi.python.org/pypi/sphinx-collections/",
         "collections@github": "https://github.com/useblocks/sphinx-collections",
     },
+}
+
+extlinks = {
+    "pr": ("https://github.com/useblocks/sphinx-collections/pull/%s", "PR #%s"),
+    "issue": (
+        "https://github.com/useblocks/sphinx-collections/issues/%s",
+        "issue #%s",
+    ),
 }
