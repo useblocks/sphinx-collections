@@ -4,7 +4,7 @@ build-backend = "flit_core.buildapi"
 
 [project]
 name = "sphinx-collections"
-version = "0.3.0"
+version = "0.3.1"
 description = "Sphinx collections extension for mapping directories and services as document folders"
 readme = "README.rst"
 license = { text = "MIT" }
