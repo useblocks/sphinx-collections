@@ -5,13 +5,12 @@ Unreleased
 ----------
 
 This release renamed the Python package from ``sphinxcontrib.collections`` to ``sphinx_collections``.
-The PyPI package name is still ``sphinx-collections``.
 
 - ‼️ Dissolve sphinxcontrib namespace package (:pr:`38`)
 
   The ``sphinxcontrib`` namespace has been removed completely and the package
   is now a standalone package named ``sphinx_collections``. This simplifies
-  packaging and avoides conflicts.
+  packaging and avoides conflicts. The PyPI package name is still ``sphinx-collections``.
 
   **Migration guide:**
 
@@ -47,7 +46,7 @@ The PyPI package name is still ``sphinx-collections``.
 -----
 
 :Released: 30.10.2025
-:Full Changelog: `v0.2.0...v0.3.0 <https://github.com/useblocks/needs-config-writer/compare/0.2.0...6f088a9>`__
+:Full Changelog: `v0.2.0...v0.3.0 <https://github.com/useblocks/sphinx-collections/compare/0.2.0...6f088a9>`__
 
 This is a release after a long time, to bring the package up to date with latest
 packaging and CI practices. Also some minor fixes and improvements have been made.
