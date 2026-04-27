@@ -5,7 +5,18 @@ import shutil
 
 import pytest
 
+from sphinx_collections import collections as _collections_module
+
 pytest_plugins = "sphinx.testing.fixtures"
+
+
+@pytest.fixture(autouse=True)
+def _reset_collections_registry():
+    # Why: COLLECTIONS is a module-level list mutated by config-inited handlers,
+    # so it leaks between tests sharing an xdist worker.
+    _collections_module.COLLECTIONS.clear()
+    yield
+    _collections_module.COLLECTIONS.clear()
 
 
 def copy_srcdir_to_tmpdir(srcdir, tmp):
