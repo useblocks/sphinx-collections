@@ -8,14 +8,15 @@ class CopyFolderDriver(Driver):
     def run(self):
         self.info("Copy folder...")
 
-        if not os.path.exists(self.config["source"]):
-            self.error("Source {} does not exist".format(self.config["source"]))
+        source = self.config["source"] if os.path.exists(self.config["source"]) else self.get_source_path()
+
+        if not os.path.exists(source):
+            self.error(f"Source {source} does not exist")
             return
 
         try:
-            copytree(
-                self.config["source"], self.config["target"], ignore=ignore_patterns(*self.config.get("ignore", []))
-            )
+            target = self.config["target"]
+            copytree(source, target, ignore=ignore_patterns(*self.config.get("ignore", [])))
         except OSError as e:
             self.error("Problems during copying folder.", e)
 
