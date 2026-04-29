@@ -18,6 +18,7 @@ repos:
       - id: taplo-format
       # lint fetches schemas online at each call, deactivate for now
       - id: taplo-lint
+        args: ["--no-schema"]
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
     hooks:
