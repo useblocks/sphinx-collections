@@ -81,8 +81,10 @@ class Collection:
                 os.makedirs(collection_main_folder, exist_ok=True)
             target = os.path.join(collection_main_folder, target)
 
-        if not os.path.exists(os.path.dirname(target)):
-            os.makedirs(os.path.dirname(target), exist_ok=True)
+        # the driver should make the directory, not the collection.
+        # This must be handled by each driver individually. See #22
+        # if not os.path.exists(os.path.dirname(target)):
+        #     os.makedirs(os.path.dirname(target), exist_ok=True)
 
         self.target = target
 
