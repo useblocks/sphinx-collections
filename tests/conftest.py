@@ -1,16 +1,27 @@
 """Pytest conftest module containing common test configuration and fixtures."""
 
+from pathlib import Path
 import shutil
 
 import pytest
-from sphinx.testing.path import path
+
+from sphinx_collections import collections as _collections_module
 
 pytest_plugins = "sphinx.testing.fixtures"
 
 
+@pytest.fixture(autouse=True)
+def _reset_collections_registry():
+    # Why: COLLECTIONS is a module-level list mutated by config-inited handlers,
+    # so it leaks between tests sharing an xdist worker.
+    _collections_module.COLLECTIONS.clear()
+    yield
+    _collections_module.COLLECTIONS.clear()
+
+
 def copy_srcdir_to_tmpdir(srcdir, tmp):
-    srcdir = path(__file__).parent.abspath() / srcdir
-    tmproot = tmp / path(srcdir).basename()
+    srcdir = Path(__file__).parent.resolve() / srcdir
+    tmproot = Path(tmp) / Path(srcdir).name
     shutil.copytree(srcdir, tmproot)
     return tmproot
 

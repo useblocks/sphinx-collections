@@ -66,7 +66,7 @@ class Collection:
         # Check if tags are set and change active to True if this is the case
         self.tags = tags
         for tag in tags:
-            if self.app.tags.tags.get(tag):
+            if tag in self.app.tags:
                 self.active = True
 
         self._prefix = f"  {self.name}: "

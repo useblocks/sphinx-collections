@@ -82,6 +82,7 @@ legacy_tox_ini = """
 [tox]
 env_list =
     py{310,311,312,313}-sphinx{74,82}
+    py{312,313}-sphinx91
     docs
     linkcheck
 requires =
@@ -96,6 +97,7 @@ deps =
     pytest-xdist>=3.0
     sphinx74: sphinx==7.4.*
     sphinx82: sphinx==8.2.*
+    sphinx91: sphinx==9.1.*
 extras = docs
 commands =
     pytest -n auto --tb=long tests/
