@@ -57,4 +57,5 @@ def test_app(make_app, sphinx_test_tempdir, request):
     try:
         yield app
     finally:
-        pass
+        # cleanup test temporary directory
+        shutil.rmtree(sphinx_test_tempdir, True)
