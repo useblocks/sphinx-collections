@@ -16,7 +16,11 @@ class CopyFolderDriver(Driver):
 
         try:
             target = self.config["target"]
-            copytree(source, target, ignore=ignore_patterns(*self.config.get("ignore", [])))
+            self.create_target_dir(target)
+
+            # As the target directory is already created, the dirs_exist_ok is set to True
+            # to avoid exeptions due to existing directories.
+            copytree(source, target, ignore=ignore_patterns(*self.config.get("ignore", [])), dirs_exist_ok=True)
         except OSError as e:
             self.error("Problems during copying folder.", e)
 
