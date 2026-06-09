@@ -92,7 +92,7 @@ class Driver:
         """
         Creates target directory if target is a path.
         """
-        if any(sep in str(target) for sep in ("/", "\\")):
+        if os.path.dirname(target):
             target_dir = os.path.dirname(target)
             if not os.path.exists(target_dir):
                 os.makedirs(target_dir, exist_ok=True)
