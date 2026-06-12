@@ -107,6 +107,7 @@ class JinjaDriver(Driver):
 
             source = self.get_path(source)
             target = self.get_path(target)
+            self.create_target_dir(target)
 
             if not os.path.exists(source):
                 self.error(f"Source {source} does not exist")

@@ -43,30 +43,35 @@ class SymlinkDriver(Driver):
     def run(self):
         self.info("Creating symlink...")
         source = self.get_path(self.config["source"])
-        target = self.get_path(self.config["target"])
+        target = self.get_path(self.config["target"]).rstrip(os.sep)
+        self.create_target_dir(target)
 
         if not os.path.exists(source):
             self.error(f"Source {source} does not exist")
             return
 
+        target_abspath = os.path.abspath(target)
+
         try:
-            # if config['clean'] is not true, symlink exists already
-            if not os.path.exists(os.path.abspath(target)):
-                os.symlink(source, target)
+            if os.path.exists(target_abspath):
+                if os.path.islink(target):
+                    self.info(f"Symlink already exists: {target_abspath}")
+                else:
+                    self.error(f"Existing target {target_abspath} is not a symlink")
             else:
-                self.info(f"Symlink already exists: {os.path.abspath(target)}")
+                os.symlink(source, target)
 
         except FileExistsError:
             # due to paralell builds for different builders (html, pdf, needs,...)
             # symlinking seems to fail sometimes due to already existing link.
             self.info("Symlink seems to exist already, continue with normal processing.")
             if not os.path.islink(target):
-                self.error(f"existing target {os.path.abspath(target)} is no symlink")
+                self.error(f"existing target {target_abspath} is no symlink")
         except OSError as e:
             self.error("Problems during creating of symlink.", e)
 
     def clean(self):
-        target = self.get_path(self.config["target"])
+        target = self.get_path(self.config["target"]).rstrip(os.sep)
         try:
             if os.path.exists(os.path.abspath(target)):
                 if not os.path.islink(target):

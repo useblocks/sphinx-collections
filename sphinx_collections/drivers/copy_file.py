@@ -14,18 +14,14 @@ class CopyFileDriver(Driver):
             self.error(f"Source {source} does not exist")
             return
 
+        target = self.config["target"]
+        self.create_target_dir(target)
+
         try:
-            target = self.config["target"]
-            self.create_target_dir(target)
-
-            try:
-                self.info(f"cp {source} {target}")
-                copy2(source, target)
-            except Exception as e:
-                self.error(f"copy file from {source} to {target} failed: {e}")
-
+            self.info(f"cp {source} {target}")
+            copy2(source, target)
         except Exception as e:
-            self.error("Problems during copying file.", e)
+            self.error(f"copy file from {source} to {target} failed: {e}")
 
     def clean(self):
         try:
