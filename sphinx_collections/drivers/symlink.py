@@ -43,7 +43,7 @@ class SymlinkDriver(Driver):
     def run(self):
         self.info("Creating symlink...")
         source = self.get_path(self.config["source"])
-        target = self.get_path(self.config["target"]).rstrip(os.sep)
+        target = self.get_path(self.config["target"]).rstrip("/")
         self.create_target_dir(target)
 
         if not os.path.exists(source):
@@ -71,7 +71,7 @@ class SymlinkDriver(Driver):
             self.error("Problems during creating of symlink.", e)
 
     def clean(self):
-        target = self.get_path(self.config["target"]).rstrip(os.sep)
+        target = self.get_path(self.config["target"]).rstrip("/")
         try:
             if os.path.exists(os.path.abspath(target)):
                 if not os.path.islink(target):

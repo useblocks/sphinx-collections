@@ -15,7 +15,7 @@ class CopyFolderDriver(Driver):
             self.error(f"Source {source} does not exist")
             return
 
-        target = self.config["target"].rstrip(os.sep)
+        target = self.config["target"].rstrip("/")
         self.create_target_dir(str(Path(target).parent))
 
         try:
