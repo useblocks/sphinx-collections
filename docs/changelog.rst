@@ -1,6 +1,8 @@
 Changelog
 =========
 
+- 🔧 Move directory handling for targets to drivers instead of collection (:issue:`22`)
+
 .. _`release:0.3.1`:
 
 0.3.1

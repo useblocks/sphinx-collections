@@ -16,7 +16,10 @@ class ReportDriver(Driver):
             template = Template(template_file.read())
         result = template.render(collections=COLLECTIONS)
         try:
-            with open(self.config["target"], "w") as target_file:
+            target = self.config["target"]
+            self.create_target_dir(target)
+
+            with open(target, "w") as target_file:
                 target_file.write(result)
         except OSError as e:
             self.error("Problems during writing collection report to file", e)

@@ -1,4 +1,4 @@
-SRC_FILES = sphinxcontrib/ tests/
+SRC_FILES = sphinx_collections/ tests/
 
 .PHONY: list
 list:

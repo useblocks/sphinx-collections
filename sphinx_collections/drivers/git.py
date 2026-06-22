@@ -38,6 +38,9 @@ class GitDriver(Driver):
     def run(self):
         self.info("Cloning git repository...")
 
+        target = self.get_path(self.config["target"])
+        self.create_target_dir(target)
+
         try:
             Repo.clone_from(self.config["source"], self.config["target"])
         except Exception as e:

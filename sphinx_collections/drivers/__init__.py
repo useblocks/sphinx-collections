@@ -88,6 +88,17 @@ class Driver:
             source = os.path.join(self.config["confdir"], source)
         return source
 
+    def create_target_dir(self, target):
+        """
+        Creates target directory if target is a path.
+        """
+        if os.path.dirname(target):
+            target_dir = os.path.dirname(target)
+            if not os.path.exists(target_dir):
+                os.makedirs(target_dir, exist_ok=True)
+            else:
+                self.info(f"directory already exists: {target_dir}")
+
     def get_path(self, path):
         """
         Returns absolute path.

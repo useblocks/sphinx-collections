@@ -21,7 +21,10 @@ class FunctionDriver(Driver):
         write_result = self.config.get("write_result", True)
         if write_result and result is not None:
             try:
-                with open(self.config["target"], "w") as target_file:
+                target = self.config["target"]
+                self.create_target_dir(target)
+
+                with open(target, "w") as target_file:
                     target_file.writelines(result.split("\n"))
             except OSError as e:
                 self.error("Problems during writing function result to file", e)

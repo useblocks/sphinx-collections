@@ -12,7 +12,10 @@ class StringDriver(Driver):
             return
 
         try:
-            with open(self.config["target"], "w") as target_file:
+            target = self.config["target"]
+            self.create_target_dir(target)
+
+            with open(target, "w") as target_file:
                 target_file.writelines(self.config["source"].split("\n"))
         except OSError as e:
             self.error("Problems during writing string to file", e)
