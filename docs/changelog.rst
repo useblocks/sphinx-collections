@@ -1,6 +1,16 @@
 Changelog
 =========
 
+.. _`release:0.3.2`:
+
+0.3.2
+-----
+
+:Released: 22.06.2026
+:Full Changelog: `v0.3.1...v0.3.2 <https://github.com/useblocks/sphinx-collections/compare/0.3.1...0.3.2>`__
+
+- 🐛 Fix Sphinx 9 compatibility (``Tags.tags`` removed) (:pr:`48`)
+
 - 🔧 Move directory handling for targets to drivers instead of collection (:issue:`22`)
 
 .. _`release:0.3.1`:
