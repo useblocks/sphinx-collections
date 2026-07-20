@@ -48,7 +48,7 @@ class GitDriver(Driver):
 
         try:
             repo = Repo(target)
-            self.info("Pull git repository...")
+            self.info("Pulling git repository...")
             repo.remotes.origin.pull()
         except (InvalidGitRepositoryError, NoSuchPathError):
             self._clone()
