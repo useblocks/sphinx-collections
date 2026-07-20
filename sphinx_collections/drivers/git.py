@@ -29,22 +29,31 @@ During clean up the local repository clone gets deleted.
 
 from shutil import rmtree
 
-from git import Repo
+from git import InvalidGitRepositoryError, NoSuchPathError, Repo
 
 from sphinx_collections.drivers import Driver
 
 
 class GitDriver(Driver):
-    def run(self):
+    def _clone(self):
         self.info("Cloning git repository...")
-
-        target = self.get_path(self.config["target"])
-        self.create_target_dir(target)
-
         try:
             Repo.clone_from(self.config["source"], self.config["target"])
         except Exception as e:
             self.error("Problems during cloning repository.", e)
+
+    def run(self):
+        target = self.get_path(self.config["target"])
+        self.create_target_dir(target)
+
+        try:
+            repo = Repo(target)
+            self.info("Pulling git repository...")
+            repo.remotes.origin.pull()
+        except (InvalidGitRepositoryError, NoSuchPathError):
+            self._clone()
+        except Exception as e:
+            self.error("Problems during repository pull.", e)
 
     def clean(self):
         try:
